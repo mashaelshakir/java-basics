@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ملف المذاكرة الشامل Java</title>
+<style>
+  :root{--blue:#3b7bbf; --orange:#e08030; --dark:#1f2937; --light:#f4f7fb; --code-bg:#1e2530; --code-text:#d6e4f0; --green:#2e8b57; --purple:#7b4fbf;}
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI', Tahoma, Arial, sans-serif; background:var(--light); color:var(--dark); margin:0; line-height:1.8;}
+  .topbar{background:linear-gradient(135deg,#5a89b8,#3b6a9e); color:white; padding:34px 20px; text-align:center;}
+  .topbar h1{margin:0; font-size:2em} .topbar p{margin:8px 0 0; opacity:.9}
+  .container{max-width:980px; margin:0 auto; padding:20px}
+
+  .master-nav{background:white; border-radius:14px; padding:20px 24px; margin:24px auto; box-shadow:0 3px 14px rgba(0,0,0,.1); border:2px solid #dde8f5;}
+  .master-nav h3{margin:0 0 12px; color:var(--orange); font-size:1.3em}
+  .master-nav ol{columns:2; padding-inline-start:22px; margin:0}
+  .master-nav a{color:var(--blue); text-decoration:none; font-weight:bold}
+  .master-nav a:hover{text-decoration:underline}
+
+  .course-block{margin-top:10px}
+  .course-header{
+    background:linear-gradient(135deg,#7fa8cf,#5a89b8); color:white; padding:24px 20px; text-align:center;
+    border-radius:14px; margin:36px 0 10px; scroll-margin-top:14px;
+  }
+  .course-header h1{margin:0; font-size:1.7em} .course-header p{margin:6px 0 0; opacity:.9}
+
+  section.unit{background:white; border-radius:14px; padding:26px 28px; margin:26px 0; box-shadow:0 2px 10px rgba(0,0,0,.07); border-inline-start:6px solid var(--blue); scroll-margin-top:14px;}
+  section.unit h2{color:var(--orange); font-size:1.5em; margin-top:0; border-bottom:2px solid #eee; padding-bottom:10px;}
+  h3.sub{color:var(--blue); margin-top:26px; font-size:1.15em}
+  .def-box{background:#eef4fb; border-radius:10px; padding:14px 18px; margin:14px 0; border-inline-start:4px solid var(--blue);}
+  .why-box{background:#fff4e9; border-radius:10px; padding:14px 18px; margin:14px 0; border-inline-start:4px solid var(--orange);}
+  .why-box::before{content:"❓ ليش نحتاجها؟ "; font-weight:bold; color:var(--orange)}
+  ul,ol{padding-inline-start:22px} li{margin:6px 0}
+  code, pre{font-family:'Consolas','Courier New',monospace; direction:ltr; text-align:left;}
+  code.inline{background:#e8edf3; padding:2px 7px; border-radius:5px; color:var(--purple); font-size:.92em;}
+  pre.code{background:var(--code-bg); color:var(--code-text); padding:16px 18px; border-radius:10px; overflow-x:auto; margin:12px 0; font-size:.92em; line-height:1.6;}
+  .kw{color:#79b8ff} .str{color:#9ecbff} .cm{color:#7f8c99; font-style:italic} .num{color:#f0b429}
+  .output-box{background:#0f1a12; color:#8ef0a0; border-radius:10px; padding:12px 18px; margin:10px 0; font-family:monospace; direction:ltr; text-align:left; font-size:.92em;}
+  .output-box::before{content:"▶ Output:"; display:block; color:#8ef0a0; opacity:.7; margin-bottom:6px}
+  table{width:100%; border-collapse:collapse; margin:14px 0}
+  th,td{border:1px solid #e0e6ed; padding:10px 12px; text-align:right}
+  th{background:#f0f4f9; color:var(--blue)} tr:nth-child(even){background:#fafcff}
+  .memory-diagram{background:#f8f5ee; border:1px dashed #c9b896; border-radius:10px; padding:16px 20px; margin:14px 0;}
+  .memory-diagram .title{font-weight:bold; color:#8a6d3b; margin-bottom:10px}
+  .mem-row{display:flex; align-items:center; gap:10px; margin:6px 0; direction:ltr; flex-wrap:wrap}
+  .mem-box{border:2px solid #444; border-radius:6px; padding:6px 14px; background:white; font-family:monospace; min-width:60px; text-align:center;}
+  .mem-arrow{color:#888}
+  .warn{color:#b03030; font-weight:bold}
+  .tip{background:#eafaf0; border-inline-start:4px solid var(--green); border-radius:10px; padding:12px 18px; margin:12px 0}
+  .tip::before{content:"💡 ";}
+  .compare{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0}
+  .compare > div{background:#f7f9fc; border-radius:10px; padding:12px 16px}
+  .compare .h{font-weight:bold; color:var(--blue); margin-bottom:6px}
+  .uml{background:#f7f9fc; border:1px solid #dde6f0; border-radius:8px; padding:14px; margin:14px 0; font-family:monospace; direction:ltr; text-align:left}
+  .back-top{display:inline-block; margin:14px 0; color:var(--blue); text-decoration:none; font-size:.9em}
+  footer{text-align:center; padding:30px; color:#888; font-size:.9em}
+  #top{scroll-margin-top:0}
+</style>
+</head>
+<body>
+
+<div class="topbar" id="top">
+  <h1>📘 ملف المذاكرة الشامل</h1>
+  <p>مقدمة في البرمجة • JAVA 101 • JAVA 102 • مقدمة OOP • JAVA 103 • JAVA 104</p>
+</div>
+
+<div class="container">
+<nav class="master-nav"><h3>الدورات</h3><ol><li><a href="#c1">مقدمة في البرمجة</a></li><li><a href="#c2">JAVA 101</a></li><li><a href="#c3">JAVA 102</a></li><li><a href="#c4">مقدمة في OOP</a></li><li><a href="#c5">JAVA 103</a></li><li><a href="#c6">JAVA 104</a></li></ol></nav>
+<div class="course-block" id="c1">
+  <div class="course-header">
+    <h1>مقدمة في البرمجة</h1>
+    <p>Intro to Programming</p>
+  </div>
+  
+
+
+
+<!-- UNIT 1 -->
+<section class="unit" id="c1-u1">
+<h2>1) مقدمة عن البرمجة | Intro to Programming Concepts</h2>
+
+<div class="def-box">
+<b>البرمجة (Programming)</b> = عملية كتابة مجموعة من الأوامر (Instructions) بلغة يفهمها الحاسوب، لحل مشكلة معيّنة أو تنفيذ مهمة محددة.
+</div>
+
+<h3 class="sub">مكونات البرنامج (Program Components)</h3>
+<ul>
+  <li><b>البيانات (Data)</b>: المعلومات اللي البرنامج يتعامل معها (أرقام، نصوص...).</li>
+  <li><b>العمليات (Operations)</b>: الأفعال اللي تُطبّق على البيانات (جمع، طرح، مقارنة...).</li>
+  <li><b>التحكم بالتدفق (Control Flow)</b>: ترتيب تنفيذ الأوامر — بالتسلسل، أو بشرط، أو بتكرار.</li>
+</ul>
+
+<h3 class="sub">كيف ينفّذ الحاسوب البرنامج؟</h3>
+<div class="def-box">
+البرنامج يُنفَّذ بشكل <b>تسلسلي (Sequential)</b> — سطر بسطر من الأعلى للأسفل — إلا إذا وُجد أمر شرط (Condition) أو تكرار (Loop) يغيّر مسار التنفيذ.
+</div>
+
+<div class="tip">
+هذي الدورة تشرح المفاهيم بشكل عام (Pseudocode/منطق) بدون التقيد بلغة معينة، عشان أي لغة برمجة (Java, Python, C++...) تطبّق نفس المفاهيم بأسلوب Syntax مختلف.
+</div>
+</section>
+
+<!-- UNIT 2 -->
+<section class="unit" id="c1-u2">
+<h2>2) المتغيرات | Variables</h2>
+
+<div class="def-box">
+<b>المتغيّر (Variable)</b> = مكان في الذاكرة (Memory) له <b>اسم</b>، يُخزَّن فيه <b>قيمة</b> يمكن تغييرها أثناء تنفيذ البرنامج.
+</div>
+
+<h3 class="sub">مكونات المتغير</h3>
+<ul>
+  <li><b>النوع (Type)</b>: يحدد نوع القيمة (رقم، نص، ...).</li>
+  <li><b>الاسم (Identifier)</b>: يُستخدم للإشارة للمتغير واسترجاع قيمته.</li>
+  <li><b>القيمة (Value)</b>: البيانات المخزّنة فعليًا.</li>
+</ul>
+
+<pre class="code">
+<span class="cm">// تعريف متغير واعطاءه قيمة</span>
+<span class="kw">int</span> age = <span class="num">20</span>;
+<span class="kw">int</span> age;      <span class="cm">// تعريف بدون قيمة (declaration)</span>
+age = <span class="num">20</span>;   <span class="cm">// اسناد القيمة لاحقًا (assignment)</span>
+</pre>
+
+<div class="memory-diagram">
+<div class="title">تمثيل المتغير في الذاكرة</div>
+<div class="mem-row">
+  <span>age</span><span class="mem-arrow">→</span><div class="mem-box">20</div>
+</div>
+<div style="margin-top:8px; color:#666; font-size:.9em">الاسم "age" يشير إلى خانة في الذاكرة تحتوي القيمة 20. لو غيّرنا age = 25، تتغيّر القيمة داخل نفس الخانة.</div>
+</div>
+
+<h3 class="sub">قواعد تسمية المتغيرات</h3>
+<ul>
+  <li>يبدأ بحرف أو _ أو $ (مو برقم).</li>
+  <li>ما يحتوي مسافات أو رموز خاصة (مثل @ # -).</li>
+  <li>حساس لحالة الأحرف (Case-Sensitive): <code class="inline">age</code> ≠ <code class="inline">Age</code>.</li>
+  <li>ما يكون كلمة محجوزة (Reserved Word) مثل <code class="inline">int</code>, <code class="inline">if</code>.</li>
+</ul>
+
+<div class="why-box">
+المتغيرات تخلي البرنامج <b>ديناميكي</b> — بدل ما نكتب القيمة ثابتة بكل مكان نستخدمها، نخزنها مرة وحدة ونعيد استخدام الاسم، ولو تغيّرت القيمة يكفي نغيّرها بمكان واحد.
+</div>
+</section>
+
+<!-- UNIT 3 -->
+<section class="unit" id="c1-u3">
+<h2>3) الثوابت | Constants</h2>
+
+<div class="def-box">
+<b>الثابت (Constant)</b> = مكان بالذاكرة له اسم وقيمة، لكن <b>لا يمكن تغيير قيمته بعد تعريفه</b>.
+</div>
+
+<pre class="code">
+<span class="kw">final</span> <span class="kw">double</span> PI = <span class="num">3.14159</span>;
+PI = <span class="num">3.14</span>;  <span class="cm">// ❌ خطأ compile error — لا يمكن تعديل ثابت</span>
+</pre>
+
+<div class="compare">
+  <div><div class="h">Variable</div>القيمة قابلة للتغيير أثناء تنفيذ البرنامج.</div>
+  <div><div class="h">Constant</div>القيمة ثابتة من لحظة التعريف ولا تتغيّر أبدًا.</div>
+</div>
+
+<div class="why-box">
+نستخدم الثوابت للقيم اللي من المفروض ما تتغيّر أبدًا (مثل PI، أو الحد الأقصى لعدد المقاعد)، لحماية البرنامج من تعديل غير مقصود لهذي القيم، ولزيادة وضوح الكود (اسم PI أوضح من كتابة 3.14159 بكل مكان).
+</div>
+</section>
+
+<!-- UNIT 4 -->
+<section class="unit" id="c1-u4">
+<h2>4) التعليقات | Comments</h2>
+
+<div class="def-box">
+<b>التعليق (Comment)</b> = نص داخل الكود يكتبه المبرمج للتوضيح، ولا يُنفَّذ من قبل الحاسوب (يتجاهله الـCompiler/Interpreter).
+</div>
+
+<pre class="code">
+<span class="cm">// تعليق سطر واحد</span>
+
+<span class="cm">/* تعليق
+   متعدد الأسطر */</span>
+</pre>
+
+<h3 class="sub">وظائف التعليقات</h3>
+<ul>
+  <li>توضيح الغرض من جزء معيّن من الكود.</li>
+  <li>تعطيل جزء من الكود مؤقتًا بدون حذفه (أثناء الاختبار).</li>
+  <li>توثيق البرنامج لأي مبرمج آخر يقرأه لاحقًا (أو أنت نفسك بعد فترة).</li>
+</ul>
+
+<div class="tip">التعليقات لا تؤثر على أداء البرنامج ولا تُترجم إلى تعليمات تنفيذية — وظيفتها للبشر فقط.</div>
+</section>
+
+<!-- UNIT 5 -->
+<section class="unit" id="c1-u5">
+<h2>5) أنواع البيانات | Data Types</h2>
+
+<div class="def-box">
+<b>نوع البيانات (Data Type)</b> = يحدد نوع القيمة اللي يخزنها المتغير، وحجم الذاكرة اللي تُحجز لها، والعمليات المسموحة عليها.
+</div>
+
+<table>
+<tr><th>النوع</th><th>الوصف</th><th>مثال</th></tr>
+<tr><td>Integer (عدد صحيح)</td><td>أرقام بدون فاصلة عشرية</td><td><code class="inline">10, -5, 0</code></td></tr>
+<tr><td>Float / Double (عدد عشري)</td><td>أرقام تحتوي فاصلة عشرية</td><td><code class="inline">3.14, -0.5</code></td></tr>
+<tr><td>Character (حرف)</td><td>حرف واحد فقط</td><td><code class="inline">'A', 'x'</code></td></tr>
+<tr><td>String (نص)</td><td>سلسلة من الأحرف</td><td><code class="inline">"Hello"</code></td></tr>
+<tr><td>Boolean (منطقي)</td><td>قيمة صح/خطأ فقط</td><td><code class="inline">true, false</code></td></tr>
+</table>
+
+<h3 class="sub">لماذا نحدد النوع؟</h3>
+<div class="why-box">
+تحديد النوع يخلي الحاسوب يعرف <b>كم مساحة يحجز</b> في الذاكرة و<b>أي عمليات مسموحة</b> — مثلاً لا يمكن جمع نص مع رقم منطقيًا بنفس طريقة جمع رقمين، فالنوع يمنع أخطاء منطقية من الأساس.
+</div>
+
+<div class="tip">
+الفرق بين Char و String: الـChar يخزن حرف واحد بعلامات اقتباس مفردة <code class="inline">' '</code>، والـString يخزن نص كامل (يمكن يكون فاضي أو أكثر من حرف) بعلامات اقتباس مزدوجة <code class="inline">" "</code>.
+</div>
+</section>
+
+<!-- UNIT 6 -->
+<section class="unit" id="c1-u6">
+<h2>6) العمليات | Operators</h2>
+
+<h3 class="sub">أ) العمليات الحسابية (Arithmetic Operators)</h3>
+<table>
+<tr><th>العملية</th><th>الرمز</th><th>مثال</th><th>النتيجة</th></tr>
+<tr><td>جمع</td><td>+</td><td>5 + 3</td><td>8</td></tr>
+<tr><td>طرح</td><td>-</td><td>5 - 3</td><td>2</td></tr>
+<tr><td>ضرب</td><td>*</td><td>5 * 3</td><td>15</td></tr>
+<tr><td>قسمة</td><td>/</td><td>10 / 3</td><td>3 (integer division) أو 3.33 (لو float)</td></tr>
+<tr><td>باقي القسمة</td><td>%</td><td>10 % 3</td><td>1</td></tr>
+</table>
+
+<div class="warn">⚠ ملاحظة مهمة: عند قسمة عددين صحيحين (int / int) في أغلب اللغات، الناتج يُقرَّب لعدد صحيح (يُهمل الكسر) — هذا سبب شائع لأخطاء منطقية في الاختبارات.</div>
+
+<h3 class="sub">ب) عمليات المقارنة (Comparison Operators)</h3>
+<table>
+<tr><th>الرمز</th><th>المعنى</th><th>مثال</th><th>النتيجة</th></tr>
+<tr><td>==</td><td>يساوي</td><td>5 == 5</td><td>true</td></tr>
+<tr><td>!=</td><td>لا يساوي</td><td>5 != 3</td><td>true</td></tr>
+<tr><td>&gt;</td><td>أكبر من</td><td>5 &gt; 3</td><td>true</td></tr>
+<tr><td>&lt;</td><td>أصغر من</td><td>5 &lt; 3</td><td>false</td></tr>
+<tr><td>&gt;=</td><td>أكبر أو يساوي</td><td>5 &gt;= 5</td><td>true</td></tr>
+<tr><td>&lt;=</td><td>أصغر أو يساوي</td><td>3 &lt;= 5</td><td>true</td></tr>
+</table>
+<div class="tip">دايمًا نتيجة عمليات المقارنة هي قيمة Boolean (true أو false) — ما ينتج رقم.</div>
+
+<h3 class="sub">ج) العمليات المنطقية (Logical Operators)</h3>
+<table>
+<tr><th>الرمز</th><th>المعنى</th><th>يرجع true إذا</th></tr>
+<tr><td>&& (AND)</td><td>و</td><td>كل الشروط صحيحة</td></tr>
+<tr><td>|| (OR)</td><td>أو</td><td>شرط واحد على الأقل صحيح</td></tr>
+<tr><td>! (NOT)</td><td>نفي</td><td>يعكس القيمة (true → false)</td></tr>
+</table>
+
+<pre class="code">
+<span class="kw">int</span> age = <span class="num">20</span>;
+<span class="kw">boolean</span> hasID = <span class="kw">true</span>;
+<span class="kw">boolean</span> canEnter = (age &gt;= <span class="num">18</span>) &amp;&amp; hasID; <span class="cm">// true</span>
+</pre>
+
+<h3 class="sub">د) Increment / Decrement</h3>
+<table>
+<tr><th>الرمز</th><th>المعنى</th></tr>
+<tr><td>++</td><td>يزيد القيمة بمقدار 1</td></tr>
+<tr><td>--</td><td>ينقص القيمة بمقدار 1</td></tr>
+</table>
+<div class="compare">
+  <div><div class="h">Pre-increment: ++x</div>يزيد القيمة أولًا، ثم تُستخدم القيمة الجديدة.</div>
+  <div><div class="h">Post-increment: x++</div>تُستخدم القيمة الحالية أولًا، ثم تزيد بعدها.</div>
+</div>
+<pre class="code">
+<span class="kw">int</span> x = <span class="num">5</span>;
+<span class="kw">int</span> a = ++x; <span class="cm">// x يصبح 6 أولًا، ثم a = 6</span>
+<span class="kw">int</span> y = <span class="num">5</span>;
+<span class="kw">int</span> b = y++; <span class="cm">// b = 5 (القيمة القديمة)، ثم y يصبح 6</span>
+</pre>
+<div class="output-box">a = 6
+x = 6
+b = 5
+y = 6</div>
+</section>
+
+<!-- UNIT 7 -->
+<section class="unit" id="c1-u7">
+<h2>7) الشروط | Conditions</h2>
+
+<div class="def-box">
+<b>جملة الشرط (Conditional Statement)</b> = تسمح للبرنامج بأخذ قرار وتنفيذ مسار معيّن من الكود بناءً على تحقق شرط (Boolean).
+</div>
+
+<h3 class="sub">If</h3>
+<pre class="code">
+<span class="kw">if</span> (age &gt;= <span class="num">18</span>) {
+    <span class="cm">// ينفّذ فقط لو الشرط صحيح</span>
+    print(<span class="str">"بالغ"</span>);
+}
+</pre>
+
+<h3 class="sub">If / Else</h3>
+<pre class="code">
+<span class="kw">if</span> (age &gt;= <span class="num">18</span>) {
+    print(<span class="str">"بالغ"</span>);
+} <span class="kw">else</span> {
+    print(<span class="str">"قاصر"</span>);
+}
+</pre>
+
+<h3 class="sub">If / Else if / Else</h3>
+<pre class="code">
+<span class="kw">if</span> (score &gt;= <span class="num">90</span>) {
+    grade = <span class="str">"A"</span>;
+} <span class="kw">else if</span> (score &gt;= <span class="num">80</span>) {
+    grade = <span class="str">"B"</span>;
+} <span class="kw">else if</span> (score &gt;= <span class="num">70</span>) {
+    grade = <span class="str">"C"</span>;
+} <span class="kw">else</span> {
+    grade = <span class="str">"F"</span>;
+}
+</pre>
+<div class="tip">
+الترتيب مهم جدًا في else if — البرنامج يفحص الشروط بالتسلسل ويتوقف عند أول شرط صحيح، فلازم نرتب الشروط من الأخص للأعم (أو حسب المنطق المطلوب) وإلا نطلع بنتيجة خاطئة.
+</div>
+
+<h3 class="sub">Switch</h3>
+<div class="def-box">يُستخدم بدل سلسلة طويلة من else if لما نقارن متغير واحد بعدة قيم محددة.</div>
+<pre class="code">
+<span class="kw">switch</span> (day) {
+    <span class="kw">case</span> <span class="num">1</span>:
+        print(<span class="str">"الأحد"</span>);
+        <span class="kw">break</span>;
+    <span class="kw">case</span> <span class="num">2</span>:
+        print(<span class="str">"الاثنين"</span>);
+        <span class="kw">break</span>;
+    <span class="kw">default</span>:
+        print(<span class="str">"يوم غير معروف"</span>);
+}
+</pre>
+<div class="warn">⚠ لو نسينا <code class="inline">break</code>، التنفيذ يستمر (يسقط/falls through) للـcase اللي بعده حتى لو ما تحقق شرطه — من أشهر الأخطاء اللي تُختبر.</div>
+
+<h3 class="sub">Nested Conditions (شروط متداخلة)</h3>
+<pre class="code">
+<span class="kw">if</span> (age &gt;= <span class="num">18</span>) {
+    <span class="kw">if</span> (hasID) {
+        print(<span class="str">"مسموح الدخول"</span>);
+    } <span class="kw">else</span> {
+        print(<span class="str">"يحتاج هوية"</span>);
+    }
+}
+</pre>
+</section>
+
+<!-- UNIT 8 -->
+<section class="unit" id="c1-u8">
+<h2>8) التكرار | Loops</h2>
+
+<div class="def-box">
+<b>حلقة التكرار (Loop)</b> = تسمح بتنفيذ مجموعة أوامر <b>عدة مرات</b> بدون إعادة كتابتها يدويًا، إلى أن يتحقق شرط توقف.
+</div>
+
+<h3 class="sub">For Loop</h3>
+<div class="def-box">يُستخدم عندما نعرف <b>عدد مرات التكرار</b> مسبقًا.</div>
+<pre class="code">
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) {
+    print(i);
+}
+</pre>
+<div class="output-box">0
+1
+2
+3
+4</div>
+<ul>
+  <li><b>Initialization</b>: <code class="inline">int i = 0</code> — ينفّذ مرة وحدة بالبداية.</li>
+  <li><b>Condition</b>: <code class="inline">i &lt; 5</code> — يُفحص قبل كل تكرار.</li>
+  <li><b>Update</b>: <code class="inline">i++</code> — ينفّذ بعد كل تكرار.</li>
+</ul>
+
+<h3 class="sub">While Loop</h3>
+<div class="def-box">يُستخدم عندما <b>لا نعرف عدد التكرارات مسبقًا</b> — يستمر طالما الشرط صحيح، ويُفحص الشرط <b>قبل</b> أول تنفيذ.</div>
+<pre class="code">
+<span class="kw">int</span> i = <span class="num">0</span>;
+<span class="kw">while</span> (i &lt; <span class="num">5</span>) {
+    print(i);
+    i++;
+}
+</pre>
+
+<h3 class="sub">Do-While Loop</h3>
+<div class="def-box">مثل While، لكن الشرط يُفحص <b>بعد</b> التنفيذ — لذلك الجسم ينفّذ <b>مرة واحدة على الأقل</b> حتى لو الشرط خطأ من البداية.</div>
+<pre class="code">
+<span class="kw">int</span> i = <span class="num">10</span>;
+<span class="kw">do</span> {
+    print(i); <span class="cm">// ينفّذ مرة وحدة رغم أن الشرط خطأ من البداية</span>
+    i++;
+} <span class="kw">while</span> (i &lt; <span class="num">5</span>);
+</pre>
+<div class="output-box">10</div>
+
+<div class="compare">
+  <div><div class="h">While</div>يفحص الشرط أولًا → ممكن ما ينفّذ أبدًا</div>
+  <div><div class="h">Do-While</div>ينفّذ الجسم أولًا → دايمًا ينفّذ مرة واحدة على الأقل</div>
+</div>
+
+<h3 class="sub">Break و Continue</h3>
+<table>
+<tr><th>الأمر</th><th>الوظيفة</th></tr>
+<tr><td><code class="inline">break</code></td><td>يوقف الحلقة بالكامل فورًا ويخرج منها</td></tr>
+<tr><td><code class="inline">continue</code></td><td>يتخطى باقي جسم التكرار الحالي وينتقل للتكرار التالي</td></tr>
+</table>
+<pre class="code">
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) {
+    <span class="kw">if</span> (i == <span class="num">3</span>) <span class="kw">continue</span>; <span class="cm">// يتخطى الطباعة عند 3</span>
+    print(i);
+}
+</pre>
+<div class="output-box">0
+1
+2
+4</div>
+
+<h3 class="sub">Nested Loops (حلقات متداخلة)</h3>
+<pre class="code">
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">2</span>; i++) {
+    <span class="kw">for</span> (<span class="kw">int</span> j = <span class="num">1</span>; j &lt;= <span class="num">2</span>; j++) {
+        print(i + <span class="str">","</span> + j);
+    }
+}
+</pre>
+<div class="output-box">1,1
+1,2
+2,1
+2,2</div>
+<div class="tip">الحلقة الداخلية (j) تكمل دورتها الكاملة قبل ما الحلقة الخارجية (i) تنتقل للقيمة التالية — نمط شائع جدًا بأسئلة "توقع الناتج".</div>
+</section>
+
+<!-- UNIT 9 -->
+<section class="unit" id="c1-u9">
+<h2>9) المصفوفة | Array</h2>
+
+<div class="def-box">
+<b>المصفوفة (Array)</b> = متغير واحد يخزن <b>عدة قيم من نفس النوع</b> متتالية في الذاكرة، ويُصل لكل قيمة عن طريق <b>Index</b> (رقم ترتيبي يبدأ من 0).
+</div>
+
+<pre class="code">
+<span class="kw">int</span>[] numbers = {<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>, <span class="num">40</span>};
+</pre>
+
+<div class="memory-diagram">
+<div class="title">تمثيل المصفوفة بالذاكرة (Index يبدأ من صفر)</div>
+<div class="mem-row">
+  <div class="mem-box">10</div><div class="mem-box">20</div><div class="mem-box">30</div><div class="mem-box">40</div>
+</div>
+<div class="mem-row" style="color:#888">
+  <div class="mem-box" style="border:none">[0]</div><div class="mem-box" style="border:none">[1]</div><div class="mem-box" style="border:none">[2]</div><div class="mem-box" style="border:none">[3]</div>
+</div>
+</div>
+
+<h3 class="sub">الوصول لعنصر والتعديل عليه</h3>
+<pre class="code">
+print(numbers[<span class="num">0</span>]); <span class="cm">// 10 — أول عنصر</span>
+numbers[<span class="num">1</span>] = <span class="num">99</span>;  <span class="cm">// تعديل العنصر الثاني</span>
+print(numbers[<span class="num">1</span>]); <span class="cm">// 99</span>
+</pre>
+
+<div class="warn">⚠ لو حاولنا الوصول لـIndex غير موجود (مثلاً numbers[10] بمصفوفة فيها 4 عناصر فقط) → خطأ Index Out of Bounds. آخر index صحيح دائمًا = length - 1.</div>
+
+<h3 class="sub">معرفة عدد العناصر (Length)</h3>
+<pre class="code">
+print(numbers.length); <span class="cm">// 4</span>
+</pre>
+
+<h3 class="sub">المرور على المصفوفة (Loop through Array)</h3>
+<pre class="code">
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; numbers.length; i++) {
+    print(numbers[i]);
+}
+</pre>
+<div class="output-box">10
+99
+30
+40</div>
+
+<div class="why-box">
+بدل ما نعرّف متغير منفصل لكل قيمة (num1, num2, num3...)، المصفوفة تخزنهم بمكان واحد ونقدر نمر عليهم بحلقة تكرار واحدة — أنسب لما عدد القيم كبير أو غير معروف مسبقًا.
+</div>
+</section>
+
+<!-- UNIT 10 -->
+<section class="unit" id="c1-u10">
+<h2>10) الدوال | Functions</h2>
+
+<div class="def-box">
+<b>الدالة (Function)</b> = مجموعة أوامر مُجمّعة تحت اسم واحد، تنفّذ مهمة محددة، ويمكن استدعاؤها (Call) عدة مرات من أي مكان بالبرنامج بدل إعادة كتابة نفس الكود.
+</div>
+
+<h3 class="sub">مكونات الدالة</h3>
+<ul>
+  <li><b>الاسم (Name)</b>: يُستخدم لاستدعاء الدالة.</li>
+  <li><b>المدخلات / المعاملات (Parameters)</b>: قيم تُمرَّر للدالة لتعمل عليها (اختيارية).</li>
+  <li><b>الجسم (Body)</b>: الأوامر اللي تُنفَّذ.</li>
+  <li><b>المخرجات (Return Value)</b>: القيمة اللي ترجعها الدالة بعد التنفيذ (اختيارية).</li>
+</ul>
+
+<pre class="code">
+<span class="cm">// تعريف دالة تجمع رقمين وترجع الناتج</span>
+<span class="kw">int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">int</span> result = a + b;
+    <span class="kw">return</span> result;
+}
+
+<span class="cm">// استدعاء الدالة</span>
+<span class="kw">int</span> sum = add(<span class="num">5</span>, <span class="num">3</span>);
+print(sum);
+</pre>
+<div class="output-box">8</div>
+
+<h3 class="sub">دالة بدون مدخلات وبدون إرجاع قيمة</h3>
+<pre class="code">
+<span class="kw">void</span> greet() {
+    print(<span class="str">"مرحبًا"</span>);
+}
+greet(); <span class="cm">// استدعاء</span>
+</pre>
+<div class="tip"><code class="inline">void</code> تعني أن الدالة لا ترجع أي قيمة — فقط تنفّذ أوامر (زي الطباعة).</div>
+
+<h3 class="sub">Parameters (المعاملات الشكلية) vs Arguments (القيم الفعلية)</h3>
+<div class="compare">
+  <div><div class="h">Parameter</div>الاسم المُعرَّف داخل تعريف الدالة، مثل a و b بالمثال أعلاه.</div>
+  <div><div class="h">Argument</div>القيمة الفعلية اللي تُمرَّر عند الاستدعاء، مثل 5 و 3.</div>
+</div>
+
+<h3 class="sub">لماذا نستخدم الدوال؟</h3>
+<div class="why-box">
+<ul style="margin:6px 0">
+  <li>تقليل تكرار الكود (DRY: Don't Repeat Yourself).</li>
+  <li>تسهيل القراءة والصيانة — كل دالة مسؤولة عن مهمة واحدة واضحة.</li>
+  <li>سهولة الاختبار — نقدر نختبر كل دالة لحالها.</li>
+</ul>
+</div>
+</section>
+
+<!-- PROJECT -->
+<section class="unit" id="c1-proj">
+<h2>11) المشروع النهائي | Final Project</h2>
+
+<div class="def-box">
+مشروع ختامي يجمع كل المفاهيم اللي درسناها بالدورة: متغيرات، ثوابت، أنواع بيانات، عمليات، شروط، تكرار، مصفوفات، ودوال — بمثال متكامل: <b>"نظام تقييم درجات الطلاب"</b>.
+</div>
+
+<h3 class="sub">فكرة المشروع (Pseudocode)</h3>
+<ol>
+  <li>تعريف مصفوفة (Array) تخزن درجات مجموعة طلاب.</li>
+  <li>دالة (Function) تحوّل الدرجة الرقمية إلى تقدير حرفي (A/B/C/F) باستخدام شروط.</li>
+  <li>حلقة تكرار (Loop) تمر على كل الطلاب وتطبع تقديرهم.</li>
+  <li>ثابت (Constant) يحدد "درجة النجاح الدنيا".</li>
+  <li>متغير (Variable) يحسب المعدل العام لكل الدرجات.</li>
+</ol>
+
+<pre class="code">
+<span class="cm">// ثابت لدرجة النجاح</span>
+<span class="kw">final</span> <span class="kw">int</span> PASS_MARK = <span class="num">60</span>;
+
+<span class="cm">// مصفوفة درجات الطلاب</span>
+<span class="kw">int</span>[] scores = {<span class="num">95</span>, <span class="num">72</span>, <span class="num">58</span>, <span class="num">88</span>, <span class="num">40</span>};
+
+<span class="cm">// دالة تحوّل الدرجة إلى تقدير حرفي</span>
+<span class="kw">char</span> getGrade(<span class="kw">int</span> score) {
+    <span class="kw">if</span> (score &gt;= <span class="num">90</span>) {
+        <span class="kw">return</span> <span class="str">'A'</span>;
+    } <span class="kw">else if</span> (score &gt;= <span class="num">80</span>) {
+        <span class="kw">return</span> <span class="str">'B'</span>;
+    } <span class="kw">else if</span> (score &gt;= PASS_MARK) {
+        <span class="kw">return</span> <span class="str">'C'</span>;
+    } <span class="kw">else</span> {
+        <span class="kw">return</span> <span class="str">'F'</span>;
+    }
+}
+
+<span class="cm">// متغير لحساب المجموع ثم المعدل</span>
+<span class="kw">int</span> total = <span class="num">0</span>;
+
+<span class="cm">// المرور على كل الطلاب</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; scores.length; i++) {
+    <span class="kw">char</span> grade = getGrade(scores[i]);
+    print(<span class="str">"الطالب "</span> + (i + <span class="num">1</span>) + <span class="str">": الدرجة "</span> + scores[i] + <span class="str">" - التقدير "</span> + grade);
+    total = total + scores[i];
+}
+
+<span class="kw">double</span> average = (<span class="kw">double</span>) total / scores.length;
+print(<span class="str">"المعدل العام: "</span> + average);
+</pre>
+
+<div class="output-box">الطالب 1: الدرجة 95 - التقدير A
+الطالب 2: الدرجة 72 - التقدير C
+الطالب 3: الدرجة 58 - التقدير F
+الطالب 4: الدرجة 88 - التقدير B
+الطالب 5: الدرجة 40 - التقدير F
+المعدل العام: 70.6</div>
+
+<h3 class="sub">ربط المفاهيم بالمشروع</h3>
+<table>
+<tr><th>المفهوم</th><th>مكان استخدامه</th></tr>
+<tr><td>Constant</td><td>PASS_MARK — قيمة ثابتة لا تتغيّر طوال البرنامج</td></tr>
+<tr><td>Array</td><td>scores — تخزين كل درجات الطلاب بمكان واحد</td></tr>
+<tr><td>Function</td><td>getGrade() — منطق تحويل الدرجة معزول بدالة مستقلة قابلة لإعادة الاستخدام</td></tr>
+<tr><td>Conditions</td><td>if/else if داخل getGrade() لتحديد التقدير الصحيح</td></tr>
+<tr><td>Loop</td><td>for للمرور على كل عناصر المصفوفة وطباعة تقدير كل طالب</td></tr>
+<tr><td>Variable</td><td>total و average — قيم تتغيّر أثناء التنفيذ لحساب المعدل</td></tr>
+<tr><td>Casting</td><td>(double) total — تحويل صريح لضمان نتيجة كسرية دقيقة للمعدل</td></tr>
+</table>
+
+<div class="tip">لاحظي إن (double) total ضرورية هنا — لو قسّمنا total (int) على scores.length (int) مباشرة بدون Cast، كانت النتيجة تُقرَّب لعدد صحيح وتفقد دقة المعدل الحقيقي (نفس التحذير اللي شرحناه بوحدة Operators).</div>
+</section>
+
+</div>
+
+<div class="course-block" id="c2">
+  <div class="course-header">
+    <h1>JAVA 101</h1>
+    <p>أساسيات لغة Java</p>
+  </div>
+  
+
+
+<!-- UNIT 1 -->
+<section class="unit" id="c2-u1">
+<h2>1) مقدمة عن لغة Java</h2>
+
+<div class="def-box">
+Java لغة برمجة <b>كائنية التوجه (Object-Oriented)</b>، تعمل بمبدأ <b>"اكتب مرة، شغّل في أي مكان" (Write Once, Run Anywhere)</b>.
+</div>
+
+<h3 class="sub">كيف تعمل Java؟</h3>
+<ol>
+  <li>نكتب الكود بملف <code class="inline">.java</code>.</li>
+  <li>الـ<b>Compiler</b> يترجم الكود إلى <b>Bytecode</b> (ملف <code class="inline">.class</code>) — لغة وسيطة مو مفهومة مباشرة لأي جهاز.</li>
+  <li>الـ<b>JVM (Java Virtual Machine)</b> المثبتة على أي نظام تشغيل تشغّل الـBytecode.</li>
+</ol>
+
+<div class="memory-diagram">
+<div class="title">مسار التنفيذ</div>
+<div class="mem-row">
+  <div class="mem-box">Code.java</div><span class="mem-arrow">→ Compiler →</span><div class="mem-box">Code.class (Bytecode)</div><span class="mem-arrow">→ JVM →</span><div class="mem-box">تشغيل فعلي</div>
+</div>
+</div>
+
+<div class="why-box">
+بسبب الـJVM، نفس ملف الـBytecode يشتغل على Windows أو Mac أو Linux بدون إعادة كتابة الكود — هذي أهم ميزة تميّز Java.
+</div>
+
+<h3 class="sub">Syntax أساسي</h3>
+<pre class="code">
+<span class="kw">public class</span> Main {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="cm">// نقطة بداية تنفيذ أي برنامج Java</span>
+    }
+}
+</pre>
+<ul>
+  <li>كل كود Java لازم يكون داخل <b>Class</b>.</li>
+  <li><code class="inline">main</code> هي الدالة اللي يبدأ منها تنفيذ البرنامج دائمًا.</li>
+  <li>اسم الملف لازم يطابق اسم الـClass العام (Public Class) بالضبط، بحساسية حالة الأحرف: <code class="inline">Main.java</code>.</li>
+</ul>
+</section>
+
+<!-- UNIT 2 -->
+<section class="unit" id="c2-u2">
+<h2>2) مدخل للغة Java</h2>
+
+<h3 class="sub">جملة الطباعة (Print Statement)</h3>
+<pre class="code">
+System.out.println(<span class="str">"Hello World"</span>); <span class="cm">// يطبع ثم ينتقل لسطر جديد</span>
+System.out.print(<span class="str">"Hello"</span>);          <span class="cm">// يطبع بدون سطر جديد</span>
+</pre>
+<div class="output-box">Hello World</div>
+
+<h3 class="sub">مكتبة Scanner (قراءة مدخلات المستخدم)</h3>
+<pre class="code">
+<span class="kw">import</span> java.util.Scanner;
+
+Scanner input = <span class="kw">new</span> Scanner(System.in);
+System.out.print(<span class="str">"أدخل اسمك: "</span>);
+String name = input.nextLine();
+System.out.println(<span class="str">"مرحبًا "</span> + name);
+</pre>
+
+<table>
+<tr><th>الدالة</th><th>تُستخدم لقراءة</th></tr>
+<tr><td><code class="inline">nextLine()</code></td><td>سطر نصي كامل (String)</td></tr>
+<tr><td><code class="inline">nextInt()</code></td><td>عدد صحيح (int)</td></tr>
+<tr><td><code class="inline">nextDouble()</code></td><td>عدد عشري (double)</td></tr>
+</table>
+<div class="warn">⚠ يجب عمل <code class="inline">import java.util.Scanner;</code> بأول الملف قبل استخدامها.</div>
+
+<h3 class="sub">التعليقات في Java</h3>
+<pre class="code">
+<span class="cm">// تعليق سطر واحد</span>
+<span class="cm">/* تعليق متعدد الأسطر */</span>
+<span class="cm">/** توثيق JavaDoc */</span>
+</pre>
+</section>
+
+<!-- UNIT 3 -->
+<section class="unit" id="c2-u3">
+<h2>3) تعريف البيانات في Java</h2>
+
+<h3 class="sub">String</h3>
+<pre class="code">
+String name = <span class="str">"Meshaal"</span>;
+String full = <span class="str">"Hello"</span> + <span class="str">" "</span> + <span class="str">"World"</span>; <span class="cm">// دمج (concatenation) باستخدام +</span>
+</pre>
+
+<h3 class="sub">Char</h3>
+<pre class="code">
+<span class="kw">char</span> grade = <span class="str">'A'</span>; <span class="cm">// علامات اقتباس مفردة، حرف واحد فقط</span>
+</pre>
+
+<h3 class="sub">Escape Characters</h3>
+<table>
+<tr><th>الرمز</th><th>المعنى</th></tr>
+<tr><td><code class="inline">\n</code></td><td>سطر جديد</td></tr>
+<tr><td><code class="inline">\t</code></td><td>مسافة تاب</td></tr>
+<tr><td><code class="inline">\"</code></td><td>علامة اقتباس داخل نص</td></tr>
+<tr><td><code class="inline">\\</code></td><td>Backslash فعلي</td></tr>
+</table>
+<pre class="code">
+System.out.println(<span class="str">"Line1\nLine2"</span>);
+</pre>
+<div class="output-box">Line1
+Line2</div>
+
+<h3 class="sub">Numbers</h3>
+<table>
+<tr><th>النوع</th><th>الوصف</th><th>مثال</th></tr>
+<tr><td><code class="inline">int</code></td><td>عدد صحيح (32-bit)</td><td><code class="inline">int x = 10;</code></td></tr>
+<tr><td><code class="inline">long</code></td><td>عدد صحيح كبير (64-bit)</td><td><code class="inline">long x = 10000000000L;</code></td></tr>
+<tr><td><code class="inline">double</code></td><td>عدد عشري (دقة عالية)</td><td><code class="inline">double x = 3.14;</code></td></tr>
+<tr><td><code class="inline">float</code></td><td>عدد عشري (دقة أقل)</td><td><code class="inline">float x = 3.14f;</code></td></tr>
+</table>
+
+<h3 class="sub">Boolean</h3>
+<pre class="code">
+<span class="kw">boolean</span> isReady = <span class="kw">true</span>;
+</pre>
+
+<h3 class="sub">الثابت Final</h3>
+<pre class="code">
+<span class="kw">final</span> <span class="kw">double</span> PI = <span class="num">3.14159</span>;
+</pre>
+<div class="why-box"><code class="inline">final</code> في Java تحديدًا هي الكلمة المحجوزة المستخدمة لتعريف ثابت — بمجرد إسناد قيمة له، أي محاولة تعديل تسبب Compile Error.</div>
+</section>
+
+<!-- UNIT 4 -->
+<section class="unit" id="c2-u4">
+<h2>4) المعاملات في Java | Operators</h2>
+
+<h3 class="sub">العمليات الرياضية</h3>
+<pre class="code">
+<span class="kw">int</span> a = <span class="num">10</span>, b = <span class="num">3</span>;
+System.out.println(a / b);  <span class="cm">// 3 (integer division)</span>
+System.out.println(a % b);  <span class="cm">// 1</span>
+System.out.println((<span class="kw">double</span>)a / b); <span class="cm">// 3.333... بعد التحويل الصريح (casting)</span>
+</pre>
+<div class="warn">⚠ قسمة int/int دائمًا تعطي int في Java حتى لو النتيجة الحقيقية كسرية — لازم Cast لأحد الطرفين إلى double للحصول على الكسر.</div>
+
+<h3 class="sub">عمليات المقارنة والمنطقية</h3>
+<pre class="code">
+<span class="kw">boolean</span> result = (a &gt; b) &amp;&amp; (b != <span class="num">0</span>);
+</pre>
+
+<h3 class="sub">Increment / Decrement</h3>
+<pre class="code">
+<span class="kw">int</span> x = <span class="num">5</span>;
+System.out.println(x++); <span class="cm">// يطبع 5 ثم يصبح x=6</span>
+System.out.println(x);   <span class="cm">// 6</span>
+System.out.println(++x); <span class="cm">// يصبح x=7 ثم يطبع 7</span>
+</pre>
+<div class="output-box">5
+6
+7</div>
+</section>
+
+<!-- UNIT 5 -->
+<section class="unit" id="c2-u5">
+<h2>5) الشروط في Java</h2>
+
+<pre class="code">
+<span class="kw">int</span> score = <span class="num">85</span>;
+
+<span class="kw">if</span> (score &gt;= <span class="num">90</span>) {
+    System.out.println(<span class="str">"A"</span>);
+} <span class="kw">else if</span> (score &gt;= <span class="num">80</span>) {
+    System.out.println(<span class="str">"B"</span>);
+} <span class="kw">else</span> {
+    System.out.println(<span class="str">"C"</span>);
+}
+</pre>
+<div class="output-box">B</div>
+
+<h3 class="sub">Switch في Java</h3>
+<pre class="code">
+<span class="kw">int</span> day = <span class="num">3</span>;
+<span class="kw">switch</span> (day) {
+    <span class="kw">case</span> <span class="num">1</span>:
+        System.out.println(<span class="str">"Sunday"</span>);
+        <span class="kw">break</span>;
+    <span class="kw">case</span> <span class="num">2</span>:
+        System.out.println(<span class="str">"Monday"</span>);
+        <span class="kw">break</span>;
+    <span class="kw">case</span> <span class="num">3</span>:
+        System.out.println(<span class="str">"Tuesday"</span>);
+        <span class="kw">break</span>;
+    <span class="kw">default</span>:
+        System.out.println(<span class="str">"Unknown"</span>);
+}
+</pre>
+<div class="output-box">Tuesday</div>
+
+<div class="tip">في Java، الـ<code class="inline">switch</code> يعمل مع: int, char, String, و enum. ما يعمل مع boolean أو double.</div>
+</section>
+
+<section class="unit" id="c2-proj">
+<h2>مشروع الوحدة: حاسبة مؤشر كتلة الجسم (BMI)</h2>
+<div class="def-box">تطبيق عملي يجمع كل المفاهيم: Scanner لقراءة الوزن والطول، عمليات حسابية لحساب BMI = weight / (height*height)، وشروط لتصنيف النتيجة (نحيف/طبيعي/زيادة وزن/سمنة).</div>
+<pre class="code">
+Scanner input = <span class="kw">new</span> Scanner(System.in);
+System.out.print(<span class="str">"الوزن بالكيلو: "</span>);
+<span class="kw">double</span> weight = input.nextDouble();
+System.out.print(<span class="str">"الطول بالمتر: "</span>);
+<span class="kw">double</span> height = input.nextDouble();
+
+<span class="kw">double</span> bmi = weight / (height * height);
+
+<span class="kw">if</span> (bmi &lt; <span class="num">18.5</span>) {
+    System.out.println(<span class="str">"نحيف"</span>);
+} <span class="kw">else if</span> (bmi &lt; <span class="num">25</span>) {
+    System.out.println(<span class="str">"طبيعي"</span>);
+} <span class="kw">else</span> {
+    System.out.println(<span class="str">"زيادة وزن"</span>);
+}
+</pre>
+</section>
+
+
+</div>
+
+<div class="course-block" id="c3">
+  <div class="course-header">
+    <h1>JAVA 102</h1>
+    <p>Arrays, Functions, Loops, Exceptions</p>
+  </div>
+  
+
+
+<!-- UNIT 1: ARRAYS -->
+<section class="unit" id="c3-u1">
+<h2>1) المصفوفات في لغة Java | Arrays</h2>
+
+<div class="def-box">المصفوفة (Array) في Java = كائن (Object) ذو حجم ثابت يخزن عناصر من نفس النوع، ويُشار لعناصرها بـIndex يبدأ من 0.</div>
+
+<h3 class="sub">تعريف المصفوفة</h3>
+<pre class="code">
+<span class="kw">int</span>[] numbers = <span class="kw">new</span> <span class="kw">int</span>[<span class="num">5</span>];      <span class="cm">// مصفوفة فاضية بحجم 5 (كل القيم = 0)</span>
+<span class="kw">int</span>[] scores = {<span class="num">90</span>, <span class="num">85</span>, <span class="num">70</span>};  <span class="cm">// تعريف مباشر بالقيم</span>
+String[] names = {<span class="str">"Ali"</span>, <span class="str">"Sara"</span>};
+</pre>
+
+<div class="memory-diagram">
+<div class="title">تمثيل المصفوفة في الذاكرة</div>
+<div class="mem-row">
+  <span>scores</span><span class="mem-arrow">→</span>
+  <div class="mem-box">90</div><div class="mem-box">85</div><div class="mem-box">70</div>
+</div>
+<div class="mem-row" style="color:#888"><span style="width:70px"></span>
+  <div class="mem-box" style="border:none">[0]</div><div class="mem-box" style="border:none">[1]</div><div class="mem-box" style="border:none">[2]</div>
+</div>
+<div style="margin-top:8px; color:#666; font-size:.9em">اسم المصفوفة scores هو Reference (مرجع) يشير إلى مكان تخزين العناصر في الذاكرة — مو المصفوفة نفسها.</div>
+</div>
+
+<h3 class="sub">الوصول والتعديل</h3>
+<pre class="code">
+System.out.println(scores[<span class="num">0</span>]); <span class="cm">// 90</span>
+scores[<span class="num">1</span>] = <span class="num">100</span>;             <span class="cm">// تعديل العنصر index=1</span>
+</pre>
+
+<h3 class="sub">عدد العناصر</h3>
+<pre class="code">
+System.out.println(scores.length); <span class="cm">// 3 — بدون أقواس (خاصية field مو method)</span>
+</pre>
+<div class="warn">⚠ ملاحظة اختبار شائعة: <code class="inline">array.length</code> بدون أقواس (Field)، بينما <code class="inline">string.length()</code> بأقواس (Method) — الاثنين مختلفين!</div>
+
+<h3 class="sub">المرور على المصفوفة</h3>
+<pre class="code">
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; scores.length; i++) {
+    System.out.println(scores[i]);
+}
+
+<span class="cm">// أو باستخدام for-each</span>
+<span class="kw">for</span> (<span class="kw">int</span> s : scores) {
+    System.out.println(s);
+}
+</pre>
+<div class="compare">
+  <div><div class="h">for التقليدي</div>يعطيك الـindex، تقدر تعدّل العناصر مباشرة.</div>
+  <div><div class="h">for-each</div>أبسط للقراءة فقط، لا يعطيك الـindex ولا يعدّل الأصل.</div>
+</div>
+</section>
+
+<!-- UNIT 2: FUNCTIONS -->
+<section class="unit" id="c3-u2">
+<h2>2) الدوال في لغة Java | Methods</h2>
+
+<div class="def-box">في Java تُسمى الدالة رسميًا <b>Method</b> لأنها دائمًا مرتبطة بـClass.</div>
+
+<pre class="code">
+<span class="kw">public static int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a + b;
+}
+
+<span class="cm">// الاستدعاء</span>
+<span class="kw">int</span> result = add(<span class="num">5</span>, <span class="num">10</span>);
+System.out.println(result);
+</pre>
+<div class="output-box">15</div>
+
+<h3 class="sub">بنية الدالة (Method Signature)</h3>
+<table>
+<tr><th>الجزء</th><th>المثال</th><th>الوصف</th></tr>
+<tr><td>Modifier</td><td>public static</td><td>يحدد الوصول ونمط الاستدعاء</td></tr>
+<tr><td>Return Type</td><td>int</td><td>نوع القيمة المُرجعة (أو void)</td></tr>
+<tr><td>Name</td><td>add</td><td>اسم الدالة</td></tr>
+<tr><td>Parameters</td><td>(int a, int b)</td><td>المدخلات مع أنواعها</td></tr>
+</table>
+
+<h3 class="sub">استخدام المدخلات (Parameters)</h3>
+<pre class="code">
+<span class="kw">public static void</span> greet(String name) {
+    System.out.println(<span class="str">"Hello, "</span> + name);
+}
+greet(<span class="str">"Meshaal"</span>);
+</pre>
+<div class="output-box">Hello, Meshaal</div>
+
+<h3 class="sub">استخدام Return</h3>
+<pre class="code">
+<span class="kw">public static boolean</span> isEven(<span class="kw">int</span> n) {
+    <span class="kw">return</span> n % <span class="num">2</span> == <span class="num">0</span>;
+}
+</pre>
+<div class="warn">⚠ أي دالة ليست void لازم ترجع قيمة بكل المسارات الممكنة (كل else/case)، وإلا خطأ compile-time "missing return statement".</div>
+
+<h3 class="sub">Method Overloading (تحميل زائد)</h3>
+<div class="def-box">إمكانية تعريف أكثر من دالة بنفس الاسم، لكن بعدد أو أنواع Parameters مختلفة.</div>
+<pre class="code">
+<span class="kw">public static int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b) { <span class="kw">return</span> a + b; }
+<span class="kw">public static double</span> add(<span class="kw">double</span> a, <span class="kw">double</span> b) { <span class="kw">return</span> a + b; }
+</pre>
+<div class="tip">Java تختار النسخة الصحيحة تلقائيًا حسب أنواع القيم اللي تُمرَّر عند الاستدعاء.</div>
+</section>
+
+<!-- UNIT 3: LOOPS -->
+<section class="unit" id="c3-u3">
+<h2>3) التكرار في لغة Java | Loops</h2>
+
+<h3 class="sub">For Loop</h3>
+<pre class="code">
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">5</span>; i++) {
+    System.out.println(<span class="str">"العدد: "</span> + i);
+}
+</pre>
+
+<h3 class="sub">While Loop</h3>
+<pre class="code">
+<span class="kw">int</span> i = <span class="num">1</span>;
+<span class="kw">while</span> (i &lt;= <span class="num">5</span>) {
+    System.out.println(i);
+    i++;
+}
+</pre>
+
+<h3 class="sub">Do-While Loop</h3>
+<pre class="code">
+<span class="kw">int</span> i = <span class="num">1</span>;
+<span class="kw">do</span> {
+    System.out.println(i);
+    i++;
+} <span class="kw">while</span> (i &lt;= <span class="num">5</span>);
+</pre>
+
+<h3 class="sub">Break و Continue</h3>
+<pre class="code">
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">10</span>; i++) {
+    <span class="kw">if</span> (i == <span class="num">5</span>) <span class="kw">break</span>;      <span class="cm">// يوقف الحلقة كليًا</span>
+    <span class="kw">if</span> (i % <span class="num">2</span> == <span class="num">0</span>) <span class="kw">continue</span>; <span class="cm">// يتخطى الأعداد الزوجية</span>
+    System.out.println(i);
+}
+</pre>
+<div class="output-box">1
+3</div>
+<div class="tip">توقف الحلقة عند i=5 بسبب break — لهذا ما طبعنا شي بعد 3. لاحظ 5 نفسها ما طُبعت لأن break صار قبل السطر الأخير.</div>
+</section>
+
+<!-- UNIT 4: EXCEPTIONS -->
+<section class="unit" id="c3-u4">
+<h2>4) الاستثناءات في لغة Java | Exceptions</h2>
+
+<h3 class="sub">أنواع الأخطاء</h3>
+<table>
+<tr><th>النوع</th><th>الوصف</th><th>مثال</th></tr>
+<tr><td>Syntax Error<br>(خطأ لغوي)</td><td>خطأ بقواعد اللغة، يُكتشف وقت الترجمة (Compile-time)</td><td>نسيان فاصلة منقوطة <code class="inline">;</code></td></tr>
+<tr><td>Runtime Error<br>(خطأ أثناء التشغيل)</td><td>الكود صحيح لغويًا لكن يفشل أثناء التنفيذ</td><td>القسمة على صفر، Index خارج الحدود</td></tr>
+<tr><td>Logical Error<br>(خطأ منطقي)</td><td>البرنامج يعمل بدون توقف، لكن يعطي نتيجة خاطئة</td><td>استخدام + بدل - بالخطأ</td></tr>
+</table>
+<div class="tip">الخطأ المنطقي هو الأصعب اكتشافًا لأن البرنامج ما يتوقف ولا يعطي رسالة خطأ — لازم تتبّع النتائج يدويًا.</div>
+
+<h3 class="sub">الاستثناء (Exception)</h3>
+<div class="def-box">Exception = حدث غير طبيعي يحصل أثناء التشغيل ويقاطع التسلسل العادي للتنفيذ (مثل Runtime Error)، ويمكن "الإمساك به" (Catch) للتعامل معه بدل ما البرنامج يتوقف بالكامل.</div>
+
+<h3 class="sub">Try / Catch</h3>
+<pre class="code">
+<span class="kw">try</span> {
+    <span class="kw">int</span> result = <span class="num">10</span> / <span class="num">0</span>; <span class="cm">// يسبب ArithmeticException</span>
+} <span class="kw">catch</span> (ArithmeticException e) {
+    System.out.println(<span class="str">"لا يمكن القسمة على صفر"</span>);
+}
+System.out.println(<span class="str">"البرنامج استمر بعد الخطأ"</span>);
+</pre>
+<div class="output-box">لا يمكن القسمة على صفر
+البرنامج استمر بعد الخطأ</div>
+
+<h3 class="sub">Finally</h3>
+<div class="def-box">كتلة <code class="inline">finally</code> تنفَّذ دائمًا سواء صار استثناء أو لا — تُستخدم عادة لتنظيف الموارد (إغلاق ملف، إغلاق اتصال).</div>
+<pre class="code">
+<span class="kw">try</span> {
+    <span class="kw">int</span>[] arr = <span class="kw">new</span> <span class="kw">int</span>[<span class="num">3</span>];
+    arr[<span class="num">5</span>] = <span class="num">10</span>; <span class="cm">// ArrayIndexOutOfBoundsException</span>
+} <span class="kw">catch</span> (ArrayIndexOutOfBoundsException e) {
+    System.out.println(<span class="str">"index خارج الحدود"</span>);
+} <span class="kw">finally</span> {
+    System.out.println(<span class="str">"تُنفَّذ دائمًا"</span>);
+}
+</pre>
+<div class="output-box">index خارج الحدود
+تُنفَّذ دائمًا</div>
+
+<h3 class="sub">Throw و Throws</h3>
+<div class="compare">
+  <div><div class="h">throw</div>يُستخدم داخل الكود لإطلاق استثناء يدويًا فورًا.</div>
+  <div><div class="h">throws</div>يُستخدم بتوقيع الدالة للإعلان أن الدالة <i>قد</i> تطلق استثناء معيّن، والمسؤولية تنتقل للمستدعي.</div>
+</div>
+<pre class="code">
+<span class="kw">public static void</span> checkAge(<span class="kw">int</span> age) {
+    <span class="kw">if</span> (age &lt; <span class="num">0</span>) {
+        <span class="kw">throw new</span> IllegalArgumentException(<span class="str">"العمر لا يمكن أن يكون سالب"</span>);
+    }
+}
+</pre>
+<div class="warn">⚠ الفرق: throw فعل تنفيذي (سطر كود يرمي الاستثناء فعليًا)، بينما throws إعلان توضيحي بتوقيع الدالة فقط.</div>
+</section>
+
+<section class="unit" id="c3-proj">
+<h2>مشروع الوحدة: نظام إدارة الطلاب</h2>
+<div class="def-box">يجمع Array لتخزين قائمة الطلاب، Methods لإضافة/بحث/عرض الطلاب، Loops للمرور على القائمة، وTry/Catch للتعامل مع مدخلات خاطئة (مثل رقم خارج نطاق المصفوفة).</div>
+
+<h3 class="sub">تصميم المشروع (Pseudocode)</h3>
+<ol>
+  <li>مصفوفة ثابتة الحجم تخزن أسماء الطلاب، ومصفوفة موازية تخزن درجاتهم.</li>
+  <li>Method لإضافة طالب جديد (بالبحث عن أول خانة فاضية بالمصفوفة).</li>
+  <li>Method للبحث عن طالب بالاسم وعرض درجته.</li>
+  <li>Method لعرض كل الطلاب المسجّلين.</li>
+  <li>Try/Catch حول أي عملية وصول لعنصر بالمصفوفة، لتفادي توقف البرنامج عند index خاطئ.</li>
+</ol>
+
+<pre class="code">
+<span class="kw">public class</span> StudentManager {
+    <span class="kw">private</span> String[] names;
+    <span class="kw">private int</span>[] scores;
+    <span class="kw">private int</span> count; <span class="cm">// عدد الطلاب المسجّلين فعليًا</span>
+
+    <span class="kw">public</span> StudentManager(<span class="kw">int</span> capacity) {
+        names = <span class="kw">new</span> String[capacity];
+        scores = <span class="kw">new int</span>[capacity];
+        count = <span class="num">0</span>;
+    }
+
+    <span class="cm">// إضافة طالب جديد</span>
+    <span class="kw">public void</span> addStudent(String name, <span class="kw">int</span> score) {
+        <span class="kw">try</span> {
+            names[count] = name;
+            scores[count] = score;
+            count++;
+            System.out.println(<span class="str">"تمت إضافة: "</span> + name);
+        } <span class="kw">catch</span> (ArrayIndexOutOfBoundsException e) {
+            System.out.println(<span class="str">"القائمة ممتلئة، لا يمكن إضافة طالب جديد"</span>);
+        }
+    }
+
+    <span class="cm">// البحث عن طالب بالاسم</span>
+    <span class="kw">public void</span> searchStudent(String name) {
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; count; i++) {
+            <span class="kw">if</span> (names[i].equals(name)) {
+                System.out.println(name + <span class="str">" - الدرجة: "</span> + scores[i]);
+                <span class="kw">return</span>;
+            }
+        }
+        System.out.println(<span class="str">"الطالب غير موجود"</span>);
+    }
+
+    <span class="cm">// عرض كل الطلاب</span>
+    <span class="kw">public void</span> displayAll() {
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; count; i++) {
+            System.out.println((i + <span class="num">1</span>) + <span class="str">") "</span> + names[i] + <span class="str">" - "</span> + scores[i]);
+        }
+    }
+}
+</pre>
+
+<h3 class="sub">تشغيل المشروع</h3>
+<pre class="code">
+<span class="kw">public class</span> Main {
+    <span class="kw">public static void</span> main(String[] args) {
+        StudentManager manager = <span class="kw">new</span> StudentManager(<span class="num">3</span>); <span class="cm">// سعة 3 طلاب فقط</span>
+
+        manager.addStudent(<span class="str">"سارة"</span>, <span class="num">92</span>);
+        manager.addStudent(<span class="str">"علي"</span>, <span class="num">78</span>);
+        manager.addStudent(<span class="str">"فهد"</span>, <span class="num">85</span>);
+        manager.addStudent(<span class="str">"نورة"</span>, <span class="num">99</span>); <span class="cm">// تجاوز السعة عمدًا لاختبار Exception</span>
+
+        System.out.println(<span class="str">"\n--- كل الطلاب ---"</span>);
+        manager.displayAll();
+
+        System.out.println(<span class="str">"\n--- بحث ---"</span>);
+        manager.searchStudent(<span class="str">"علي"</span>);
+        manager.searchStudent(<span class="str">"خالد"</span>);
+    }
+}
+</pre>
+
+<div class="output-box">تمت إضافة: سارة
+تمت إضافة: علي
+تمت إضافة: فهد
+القائمة ممتلئة، لا يمكن إضافة طالب جديد
+
+--- كل الطلاب ---
+1) سارة - 92
+2) علي - 78
+3) فهد - 85
+
+--- بحث ---
+علي - الدرجة: 78
+الطالب غير موجود</div>
+
+<div class="why-box">
+لاحظي إن addStudent() الرابعة (نورة) فشلت بهدوء بسبب Try/Catch بدل ما تُوقف البرنامج بالكامل بخطأ ArrayIndexOutOfBoundsException — هذا بالضبط سبب استخدامنا للاستثناءات: نتحكم بكيفية التعامل مع الخطأ بدل ما يتوقف كل شي بشكل مفاجئ.
+</div>
+
+<h3 class="sub">ربط المفاهيم بالمشروع</h3>
+<table>
+<tr><th>المفهوم</th><th>مكان استخدامه</th></tr>
+<tr><td>Array</td><td>names و scores — تخزين بيانات كل الطلاب بشكل متوازٍ</td></tr>
+<tr><td>Method</td><td>addStudent / searchStudent / displayAll — كل وحدة مسؤولة عن مهمة واحدة</td></tr>
+<tr><td>Loop (for)</td><td>المرور على count عنصر بدل length الكاملة (لتفادي المرور على خانات فاضية)</td></tr>
+<tr><td>Try/Catch</td><td>حماية addStudent() من تجاوز سعة المصفوفة</td></tr>
+</table>
+</section>
+
+
+</div>
+
+<div class="course-block" id="c4">
+  <div class="course-header">
+    <h1>مقدمة في OOP</h1>
+    <p>Intro to Object Oriented Programming</p>
+  </div>
+  
+
+
+<!-- UNIT 1 -->
+<section class="unit" id="c4-u1">
+<h2>1) مفهوم OOP</h2>
+
+<div class="def-box">
+<b>البرمجة كائنية التوجه (OOP)</b> = أسلوب برمجة يعتمد على تنظيم البرنامج حول <b>الكائنات (Objects)</b> بدل الأوامر والدوال المتفرقة (كما بالبرمجة الإجرائية Procedural Programming).
+</div>
+
+<h3 class="sub">Procedural vs OOP</h3>
+<div class="compare">
+  <div><div class="h">Procedural Programming</div>البرنامج مجموعة دوال تُنفَّذ بالتسلسل على بيانات منفصلة عنها.</div>
+  <div><div class="h">Object-Oriented Programming</div>البرنامج مجموعة كائنات، كل كائن يحتوي بياناته الخاصة (Attributes) وسلوكه الخاص (Methods) معًا.</div>
+</div>
+
+<div class="why-box">
+OOP تحاكي طريقة تفكيرنا بالعالم الحقيقي (أشياء لها خصائص وسلوكيات)، وتخلي الكود أكثر تنظيمًا، وقابل لإعادة الاستخدام، وأسهل صيانة عند تكبير المشروع.
+</div>
+</section>
+
+<!-- UNIT 2 -->
+<section class="unit" id="c4-u2">
+<h2>2) مفهوم Class و Object</h2>
+
+<div class="def-box">
+<b>الصنف (Class)</b> = القالب أو المخطط (Blueprint) الذي يحدد الخصائص (Attributes) والسلوكيات (Methods) اللي هيكون عليها الكائن.
+<br><br>
+<b>الكائن (Object)</b> = نسخة فعلية (Instance) تم إنشاؤها من الـClass، ولها قيم حقيقية للخصائص.
+</div>
+
+<h3 class="sub">مثال توضيحي</h3>
+<div class="def-box">
+Class "Car" هو القالب العام (كل سيارة لها لون، ماركة، سرعة...) — بينما "سيارتي الحمراء تويوتا" هي Object فعلي (نسخة حقيقية بقيم محددة).
+</div>
+
+<div class="compare">
+  <div><div class="h">Class = Car</div>Attributes: color, brand, speed<br>Methods: accelerate(), brake()</div>
+  <div><div class="h">Object = myCar</div>color = "Red"<br>brand = "Toyota"<br>speed = 0</div>
+</div>
+
+<h3 class="sub">Attributes و Methods</h3>
+<ul>
+  <li><b>Attributes (الخصائص)</b>: البيانات اللي يحملها الكائن (تُسمى أيضًا Fields أو Properties).</li>
+  <li><b>Methods (السلوكيات)</b>: الأفعال اللي يقدر الكائن يسويها (الدوال المرتبطة بالـClass).</li>
+</ul>
+
+<h3 class="sub">إنشاء Object (Instantiation)</h3>
+<div class="def-box">عملية إنشاء كائن من Class تُسمى <b>Instantiation</b>، ويُشار للكائن الناتج بأنه <b>Instance</b> من ذلك الـClass.</div>
+
+<div class="why-box">
+هذا الفصل بين "التصميم العام" (Class) و"النسخ الفعلية" (Objects) يسمح بإنشاء عدد غير محدود من الكائنات المتشابهة بالبنية لكن المختلفة بالقيم، من نفس القالب — بدون إعادة كتابة الكود لكل واحد.
+</div>
+</section>
+
+<!-- UNIT 3 -->
+<section class="unit" id="c4-u3">
+<h2>3) مبادئ OOP الأربعة</h2>
+
+<div class="def-box">تقوم البرمجة كائنية التوجه على 4 مبادئ أساسية:</div>
+<table>
+<tr><th>المبدأ</th><th>الفكرة الأساسية بجملة واحدة</th></tr>
+<tr><td>Inheritance (الوراثة)</td><td>صنف يرث خصائص وسلوكيات صنف آخر</td></tr>
+<tr><td>Abstraction (التجريد)</td><td>إخفاء التفاصيل المعقدة وعرض الأساسيات فقط</td></tr>
+<tr><td>Encapsulation (التغليف)</td><td>حماية البيانات الداخلية من الوصول المباشر غير المصرح</td></tr>
+<tr><td>Polymorphism (تعدد الأشكال)</td><td>نفس الاستدعاء يتصرف بطرق مختلفة حسب الكائن</td></tr>
+</table>
+
+<div class="why-box">
+هذي المبادئ الأربعة تحل مشاكل حقيقية بالبرمجة الكبيرة: تكرار الكود (يحلها Inheritance)، التعقيد الزائد (يحلها Abstraction)، تعديل البيانات بشكل غير آمن (يحلها Encapsulation)، وصعوبة التعامل مع أنواع مختلفة بشكل موحد (يحلها Polymorphism).
+</div>
+</section>
+
+<!-- UNIT 4 -->
+<section class="unit" id="c4-u4">
+<h2>4) مفهوم Inheritance (الوراثة)</h2>
+
+<div class="def-box">
+<b>الوراثة (Inheritance)</b> = آلية تسمح لصنف جديد (Subclass / Child Class) أن يرث الخصائص والسلوكيات من صنف موجود (Superclass / Parent Class)، مع إمكانية إضافة أو تعديل خصائصه الخاصة.
+</div>
+
+<h3 class="sub">لماذا نحتاج الوراثة؟</h3>
+<div class="why-box">
+لتفادي تكرار نفس الكود بعدة أصناف متشابهة — لو عندنا Car و Truck و Motorcycle، وكلهم يشتركون بخصائص (brand, speed) وسلوكيات (accelerate)، نضع هذي المشتركات بصنف عام "Vehicle" وكل صنف فرعي يرثها بدل تكرارها.
+</div>
+
+<h3 class="sub">تمثيل الوراثة بـUML Diagram</h3>
+<div class="uml">
+      Vehicle (Parent / Superclass)
+             ▲
+    ┌────────┼────────┐
+   Car     Truck   Motorcycle   (Children / Subclasses)
+</div>
+<div class="tip">بالـUML، السهم المفتوح (▲) يشير دائمًا من الصنف الفرعي إلى الصنف الأب — اتجاه السهم يعني "يرث من".</div>
+
+<h3 class="sub">مثال على مفهوم الوراثة</h3>
+<div class="def-box">
+صنف "Vehicle" يحتوي: brand, speed, accelerate(). <br>
+صنف "Car" يرث كل هذا تلقائيًا، ويضيف خاصية خاصة به مثل numberOfDoors.
+</div>
+
+<h3 class="sub">أنواع العلاقة IS-A</h3>
+<div class="why-box">
+الوراثة تُستخدم فقط لما توجد علاقة منطقية "IS-A" (هو نوع من) — مثلاً "Car IS-A Vehicle" منطقية. لو العلاقة "HAS-A" (يحتوي على)، الأصح نستخدم Composition مو Inheritance (مثل Person HAS-A Date وليس Person IS-A Date).
+</div>
+</section>
+
+<!-- UNIT 5 -->
+<section class="unit" id="c4-u5">
+<h2>5) مفهوم Abstraction (التجريد)</h2>
+
+<div class="def-box">
+<b>التجريد (Abstraction)</b> = إخفاء تفاصيل التنفيذ الداخلية المعقدة، وعرض فقط الوظائف الأساسية اللي يحتاجها المستخدم للتعامل مع الكائن.
+</div>
+
+<h3 class="sub">مثال من الحياة الواقعية</h3>
+<div class="def-box">
+لما تسوق سيارة، تستخدم المقود والدواسات (الواجهة البسيطة) — بدون ما تحتاج تفهم كيف يعمل المحرك بالتفصيل (التعقيد مخفي عنك).
+</div>
+
+<h3 class="sub">Abstract Class و Abstract Method</h3>
+<table>
+<tr><th>المصطلح</th><th>الوصف</th></tr>
+<tr><td>Abstract Class</td><td>صنف لا يمكن إنشاء كائن (Object) منه مباشرة — يُستخدم فقط كقالب أساسي يُورَّث منه</td></tr>
+<tr><td>Abstract Method</td><td>دالة معرَّفة بالاسم والتوقيع فقط بدون جسم (تنفيذ) — كل صنف فرعي يرث Abstract Class ملزم يوفر تنفيذها الخاص</td></tr>
+</table>
+
+<div class="why-box">
+نستخدم Abstraction لما نبي نضمن أن كل الأصناف الفرعية توفّر تنفيذ معيّن (إجباري)، لكن كل صنف يطبقه بطريقته الخاصة — مثلاً "Shape" فيها abstract method اسمها calculateArea()، وكل شكل (Circle, Square) يطبقها بمعادلة مختلفة.
+</div>
+
+<h3 class="sub">خصائص Abstract Class</h3>
+<ul>
+  <li>لا يمكن إنشاء Object منه مباشرة (<code class="inline">new AbstractClass()</code> خطأ).</li>
+  <li>يمكن أن يحتوي methods عادية (لها تنفيذ) بالإضافة لـabstract methods.</li>
+  <li>أي صنف يرث منه، لازم يطبّق (Override) كل الـabstract methods، وإلا يصبح هو نفسه abstract.</li>
+</ul>
+</section>
+
+<!-- UNIT 6 -->
+<section class="unit" id="c4-u6">
+<h2>6) مفهوم Encapsulation (التغليف)</h2>
+
+<div class="def-box">
+<b>التغليف (Encapsulation)</b> = تجميع البيانات (Attributes) والدوال (Methods) اللي تعمل عليها داخل وحدة واحدة (Class)، مع <b>إخفاء</b> البيانات الداخلية عن الوصول المباشر من خارج الصنف.
+</div>
+
+<h3 class="sub">لماذا نحتاج Encapsulation؟</h3>
+<div class="why-box">
+لحماية البيانات من التعديل غير المتحكم فيه من خارج الصنف — مثلاً لو خاصية "balance" (رصيد حساب) مكشوفة مباشرة، أي كود خارجي يقدر يغيّرها لأي قيمة (حتى سالبة!) بدون تحقق. Encapsulation يجبر التعديل يمر عبر دوال محكومة تتحقق من صحة القيمة أولًا.
+</div>
+
+<h3 class="sub">تطبيق Encapsulation</h3>
+<ol>
+  <li>نجعل الخصائص (Attributes) <b>private</b> — غير مرئية من خارج الصنف مباشرة.</li>
+  <li>نوفّر دوال <b>Getters</b> و <b>Setters</b> عامة (public) للوصول للقيمة أو تعديلها بشكل محكوم.</li>
+</ol>
+
+<h3 class="sub">مفهوم دوال Get() و Set()</h3>
+<table>
+<tr><th>النوع</th><th>الوظيفة</th></tr>
+<tr><td>Getter</td><td>يرجع (يقرأ) قيمة الخاصية الخاصة دون السماح بتعديلها مباشرة</td></tr>
+<tr><td>Setter</td><td>يعدّل قيمة الخاصية بعد التحقق من صحتها (Validation)</td></tr>
+</table>
+
+<div class="tip">
+مثال منطقي: setter لخاصية "age" يتحقق أن القيمة الجديدة ليست سالبة قبل قبولها — لو حاولنا وصولنا مباشر للخاصية بدون setter، ما كان في مكان لهذا التحقق.
+</div>
+</section>
+
+<!-- UNIT 7 -->
+<section class="unit" id="c4-u7">
+<h2>7) مفهوم Polymorphism (تعدد الأشكال)</h2>
+
+<div class="def-box">
+<b>تعدد الأشكال (Polymorphism)</b> = قدرة نفس الاستدعاء (Method Call) على التصرف بطرق مختلفة حسب نوع الكائن الفعلي اللي يُستدعى عليه.
+</div>
+
+<h3 class="sub">مثال توضيحي</h3>
+<div class="def-box">
+كل من Cat و Dog يرث من Animal ولديه method باسم makeSound()، لكن كل واحد ينفذها بشكل مختلف — استدعاء animal.makeSound() على كائن Cat يعطي "Meow"، وعلى Dog يعطي "Woof"، بنفس اسم الاستدعاء بالضبط.
+</div>
+
+<h3 class="sub">نوعان أساسيان من Polymorphism</h3>
+<div class="compare">
+  <div><div class="h">Compile-time (Static) Polymorphism</div>يتحدد وقت الترجمة — يتحقق عبر Method Overloading (نفس الاسم، Parameters مختلفة).</div>
+  <div><div class="h">Runtime (Dynamic) Polymorphism</div>يتحدد وقت التشغيل الفعلي — يتحقق عبر Method Overriding (صنف فرعي يعيد تعريف method موروثة من الأب).</div>
+</div>
+
+<div class="why-box">
+Polymorphism تسمح لنا نتعامل مع مجموعة كائنات من أنواع مختلفة (لكن مرتبطة بالوراثة) بشكل موحّد — مثلاً مصفوفة من Animal تحتوي Cat وDog معًا، ونقدر نستدعي makeSound() على كل عنصر بنفس السطر من الكود، وكل كائن يتصرف حسب نوعه الحقيقي.
+</div>
+</section>
+
+
+</div>
+
+<div class="course-block" id="c5">
+  <div class="course-header">
+    <h1>JAVA 103</h1>
+    <p>تطبيق OOP في Java</p>
+  </div>
+  
+
+
+<!-- UNIT 1 -->
+<section class="unit" id="c5-u1">
+<h2>1) مقدمة في البرمجة كائنية التوجه في Java</h2>
+
+<h3 class="sub">إنشاء Class</h3>
+<pre class="code">
+<span class="kw">public class</span> Student {
+    <span class="kw">private</span> String name;
+    <span class="kw">private</span> <span class="kw">int</span> age;
+
+    <span class="cm">// Constructor</span>
+    <span class="kw">public</span> Student(String name, <span class="kw">int</span> age) {
+        <span class="kw">this</span>.name = name;
+        <span class="kw">this</span>.age = age;
+    }
+}
+</pre>
+<div class="tip"><code class="inline">this</code> تشير إلى الكائن الحالي نفسه — تُستخدم للتفريق بين الـAttribute والـParameter لما يتشابه الاسم (this.name = name).</div>
+
+<h3 class="sub">إنشاء Object من Class</h3>
+<pre class="code">
+Student s1 = <span class="kw">new</span> Student(<span class="str">"Ali"</span>, <span class="num">20</span>);
+</pre>
+<div class="memory-diagram">
+<div class="title">ماذا يحصل عند new؟</div>
+<div class="mem-row">
+  <span>s1</span><span class="mem-arrow">→</span>
+  <div class="mem-box">name="Ali"<br>age=20</div>
+</div>
+<div style="margin-top:8px; color:#666; font-size:.9em">s1 متغير Reference موجود في Stack، يشير إلى الكائن الفعلي المخزّن في Heap.</div>
+</div>
+
+<h3 class="sub">أنواع Access Modifiers</h3>
+<table>
+<tr><th>Modifier</th><th>الوصول المسموح</th></tr>
+<tr><td><code class="inline">public</code></td><td>يُوصل له من أي مكان (نفس الصنف، صنف آخر، حزمة أخرى)</td></tr>
+<tr><td><code class="inline">private</code></td><td>يُوصل له فقط من داخل نفس الصنف</td></tr>
+<tr><td><code class="inline">protected</code></td><td>من نفس الصنف، الأصناف الوارثة، ونفس الـpackage</td></tr>
+<tr><td>(default / بدون تحديد)</td><td>فقط من نفس الـpackage</td></tr>
+</table>
+
+<h3 class="sub">Static</h3>
+<div class="def-box">الكلمة <code class="inline">static</code> تعني أن الخاصية أو الدالة تنتمي <b>للصنف نفسه</b> وليست لكائن معيّن — تُشترَك بين كل الكائنات من نفس الصنف.</div>
+<pre class="code">
+<span class="kw">public class</span> Counter {
+    <span class="kw">static int</span> count = <span class="num">0</span>; <span class="cm">// مشتركة بين كل الكائنات</span>
+
+    <span class="kw">public</span> Counter() {
+        count++;
+    }
+}
+<span class="cm">// بعد إنشاء 3 كائنات، Counter.count == 3</span>
+</pre>
+<div class="compare">
+  <div><div class="h">Instance Member</div>كل كائن له نسخته الخاصة (مثل name لكل طالب مختلف)</div>
+  <div><div class="h">Static Member</div>نسخة واحدة مشتركة بين كل الكائنات (مثل عدّاد عام)</div>
+</div>
+<div class="why-box">نستخدم static لبيانات أو دوال لا تعتمد على كائن معيّن — مثل main() نفسها، لأنها تُستدعى قبل إنشاء أي Object.</div>
+</section>
+
+<!-- UNIT 2 -->
+<section class="unit" id="c5-u2">
+<h2>2) Inheritance في Java</h2>
+
+<pre class="code">
+<span class="kw">public class</span> Vehicle {
+    <span class="kw">protected</span> String brand;
+    <span class="kw">protected int</span> speed;
+
+    <span class="kw">public</span> Vehicle(String brand, <span class="kw">int</span> speed) {
+        <span class="kw">this</span>.brand = brand;
+        <span class="kw">this</span>.speed = speed;
+    }
+
+    <span class="kw">public void</span> accelerate() {
+        System.out.println(brand + <span class="str">" يسرع"</span>);
+    }
+}
+
+<span class="kw">public class</span> Car <span class="kw">extends</span> Vehicle {
+    <span class="kw">private int</span> numberOfDoors;
+
+    <span class="kw">public</span> Car(String brand, <span class="kw">int</span> speed, <span class="kw">int</span> doors) {
+        <span class="kw">super</span>(brand, speed); <span class="cm">// استدعاء Constructor الأب</span>
+        <span class="kw">this</span>.numberOfDoors = doors;
+    }
+}
+</pre>
+
+<h3 class="sub">مصطلح super</h3>
+<table>
+<tr><th>الاستخدام</th><th>الوظيفة</th></tr>
+<tr><td><code class="inline">super(...)</code></td><td>استدعاء Constructor الصنف الأب — يجب أن يكون أول سطر بالـConstructor</td></tr>
+<tr><td><code class="inline">super.methodName()</code></td><td>استدعاء نسخة الأب من دالة تم Override بالصنف الفرعي</td></tr>
+</table>
+<div class="warn">⚠ لو ما كتبنا super(...) صراحة، Java تستدعي تلقائيًا Constructor الأب <b>بدون معاملات</b> — لو ما كان موجود، خطأ compile-time.</div>
+
+<h3 class="sub">protected modifier</h3>
+<div class="why-box">
+نستخدم protected بدل private للخصائص اللي نبي الأصناف الفرعية (Subclasses) توصل لها مباشرة (زي brand و speed هنا)، لكن نمنع الوصول من كود خارجي غير مرتبط بالوراثة.
+</div>
+
+<h3 class="sub">استخدام الكائن الفرعي</h3>
+<pre class="code">
+Car myCar = <span class="kw">new</span> Car(<span class="str">"Toyota"</span>, <span class="num">180</span>, <span class="num">4</span>);
+myCar.accelerate(); <span class="cm">// موروثة من Vehicle مباشرة</span>
+</pre>
+<div class="output-box">Toyota يسرع</div>
+</section>
+
+<!-- UNIT 3 -->
+<section class="unit" id="c5-u3">
+<h2>3) Encapsulation في Java</h2>
+
+<pre class="code">
+<span class="kw">public class</span> Account {
+    <span class="kw">private double</span> balance; <span class="cm">// مخفية عن الخارج</span>
+
+    <span class="cm">// Getter</span>
+    <span class="kw">public double</span> getBalance() {
+        <span class="kw">return</span> balance;
+    }
+
+    <span class="cm">// Setter مع تحقق (Validation)</span>
+    <span class="kw">public void</span> setBalance(<span class="kw">double</span> balance) {
+        <span class="kw">if</span> (balance &gt;= <span class="num">0</span>) {
+            <span class="kw">this</span>.balance = balance;
+        } <span class="kw">else</span> {
+            System.out.println(<span class="str">"لا يمكن أن يكون الرصيد سالب"</span>);
+        }
+    }
+}
+</pre>
+
+<pre class="code">
+Account acc = <span class="kw">new</span> Account();
+acc.balance = <span class="num">-500</span>;      <span class="cm">// ❌ خطأ compile-time: balance is private</span>
+acc.setBalance(<span class="num">-500</span>);    <span class="cm">// ✅ يعمل، لكن Setter يرفض القيمة ويطبع رسالة</span>
+acc.setBalance(<span class="num">1000</span>);    <span class="cm">// ✅ يُقبل</span>
+System.out.println(acc.getBalance());
+</pre>
+<div class="output-box">لا يمكن أن يكون الرصيد سالب
+1000.0</div>
+
+<div class="why-box">
+لو خلينا balance عام (public) مباشرة، أي كود خارجي يقدر يسوي acc.balance = -500 بدون أي تحقق. بجعلها private وإجبار التعديل عبر setBalance()، ضمنّا أن كل تعديل يمر أولًا على شرط التحقق.
+</div>
+</section>
+
+<!-- UNIT 4 -->
+<section class="unit" id="c5-u4">
+<h2>4) Polymorphism في Java</h2>
+
+<h3 class="sub">الجزء الأول: Method Overloading (Compile-time Polymorphism)</h3>
+<pre class="code">
+<span class="kw">public class</span> Calculator {
+    <span class="kw">public int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+        <span class="kw">return</span> a + b;
+    }
+    <span class="kw">public double</span> add(<span class="kw">double</span> a, <span class="kw">double</span> b) {
+        <span class="kw">return</span> a + b;
+    }
+    <span class="kw">public int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b, <span class="kw">int</span> c) {
+        <span class="kw">return</span> a + b + c;
+    }
+}
+</pre>
+<div class="tip">Overloading = نفس اسم الدالة، لكن Signature مختلف (عدد أو نوع Parameters). Java تحدد أي نسخة تُستدعى وقت الترجمة حسب القيم الممرَّرة.</div>
+
+<h3 class="sub">الجزء الثاني: Method Overriding (Runtime Polymorphism)</h3>
+<pre class="code">
+<span class="kw">public class</span> Animal {
+    <span class="kw">public void</span> makeSound() {
+        System.out.println(<span class="str">"صوت عام"</span>);
+    }
+}
+
+<span class="kw">public class</span> Dog <span class="kw">extends</span> Animal {
+    <span class="kw">@Override</span>
+    <span class="kw">public void</span> makeSound() {
+        System.out.println(<span class="str">"Woof"</span>);
+    }
+}
+
+<span class="kw">public class</span> Cat <span class="kw">extends</span> Animal {
+    <span class="kw">@Override</span>
+    <span class="kw">public void</span> makeSound() {
+        System.out.println(<span class="str">"Meow"</span>);
+    }
+}
+</pre>
+<pre class="code">
+Animal[] animals = { <span class="kw">new</span> Dog(), <span class="kw">new</span> Cat() };
+<span class="kw">for</span> (Animal a : animals) {
+    a.makeSound(); <span class="cm">// Java تحدد الميثود الصحيحة وقت التشغيل حسب نوع الكائن الفعلي</span>
+}
+</pre>
+<div class="output-box">Woof
+Meow</div>
+
+<div class="compare">
+  <div><div class="h">Overloading</div>نفس الصنف، نفس الاسم، Parameters مختلفة، يُحدَّد وقت الـCompile</div>
+  <div><div class="h">Overriding</div>صنف فرعي يعيد تعريف method من الأب، نفس التوقيع تمامًا، يُحدَّد وقت الـRuntime</div>
+</div>
+
+<div class="warn">⚠ شرط Overriding: نفس اسم الدالة، نفس عدد ونوع الـParameters، ونفس (أو أضيق) نوع الإرجاع — وإلا يُعتبر Overloading مو Overriding.</div>
+</section>
+
+<!-- UNIT 5 -->
+<section class="unit" id="c5-u5">
+<h2>5) Abstraction في Java</h2>
+
+<h3 class="sub">Abstract Class</h3>
+<pre class="code">
+<span class="kw">public abstract class</span> Shape {
+    <span class="kw">public abstract double</span> calculateArea(); <span class="cm">// بدون جسم — abstract method</span>
+
+    <span class="kw">public void</span> displayInfo() { <span class="cm">// method عادية، لها تنفيذ</span>
+        System.out.println(<span class="str">"هذا شكل هندسي"</span>);
+    }
+}
+</pre>
+
+<h3 class="sub">Abstract Method</h3>
+<pre class="code">
+<span class="kw">public class</span> Circle <span class="kw">extends</span> Shape {
+    <span class="kw">private double</span> radius;
+
+    <span class="kw">public</span> Circle(<span class="kw">double</span> radius) {
+        <span class="kw">this</span>.radius = radius;
+    }
+
+    <span class="kw">@Override</span>
+    <span class="kw">public double</span> calculateArea() {
+        <span class="kw">return</span> Math.PI * radius * radius;
+    }
+}
+</pre>
+
+<pre class="code">
+Shape s = <span class="kw">new</span> Shape();       <span class="cm">// ❌ خطأ compile-time: Shape abstract</span>
+Shape c = <span class="kw">new</span> Circle(<span class="num">5</span>); <span class="cm">// ✅ يعمل — Circle يطبق كل abstract methods</span>
+System.out.println(c.calculateArea());
+</pre>
+<div class="output-box">78.53981633974483</div>
+
+<div class="why-box">
+Abstraction هنا تجبر أي شكل هندسي جديد (Square, Triangle...) على توفير طريقته الخاصة لحساب المساحة، بينما تشترك جميعها بسلوك displayInfo() الجاهز — توازن بين الإلزام (لما تختلف الطريقة) والمشاركة (لما تتشابه).
+</div>
+
+<div class="warn">⚠ لو صنف يرث Abstract Class ولم يطبّق كل الـabstract methods، يصبح هو نفسه إجباريًا abstract class ولا يمكن إنشاء Object منه.</div>
+</section>
+
+<section class="unit" id="c5-proj">
+<h2>مشروع الوحدة: نظام إدارة مركبات</h2>
+<div class="def-box">يجمع كل المبادئ: Vehicle كـabstract/parent class، Car/Truck/Motorcycle ترث منه (Inheritance)، خصائص private مع getters/setters (Encapsulation)، وmethods مثل calculateFee() تُطبَّق بشكل مختلف بكل نوع مركبة (Polymorphism).</div>
+</section>
+
+
+</div>
+
+<div class="course-block" id="c6">
+  <div class="course-header">
+    <h1>JAVA 104</h1>
+    <p>مشروع نظام إدارة مركبات</p>
+  </div>
+  
+
+
+<!-- UNIT 1 -->
+<section class="unit" id="c6-u1">
+<h2>1) وصف المشروع والهدف</h2>
+
+<div class="def-box">
+المشروع يبني <b>نظام إدارة مركبات (Garage Management System)</b> يطبّق الترتيب الصحيح لبناء أي مشروع Java: تصميم الأصناف أولًا (Modeling)، ثم منطق الإدارة (Business Logic)، ثم نقطة التشغيل (Main).
+</div>
+
+<h3 class="sub">هيكل التصميم العام (UML)</h3>
+<div class="uml">
+              Vehicle (Parent Class)
+                     ▲
+      ┌──────────────┼──────────────┐
+     Car           Truck        Motorcycle
+
+              Garage (Manager Class)
+   - يحتوي مصفوفة/قائمة من Vehicle
+   - addVehicle() / removeVehicle() / updateVehicle()
+   - displayVehicles() / displayVehicleDetails()
+
+              Main Class
+   - نقطة بداية التشغيل
+   - يستخدم Garage للتفاعل مع المستخدم
+</div>
+
+<div class="why-box">
+هذا الترتيب (Model → Manager → Main) هو الأسلوب الصحيح لبناء أي مشروع OOP حقيقي: أولًا نصمم "الأشياء" اللي يتعامل معها البرنامج (المركبات)، بعدين "من يديرها" (الكراج)، وأخيرًا "من يشغّل كل شي" (Main) — بدل البدء من Main مباشرة والتشابك بالتفاصيل.
+</div>
+</section>
+
+<!-- UNIT 2 -->
+<section class="unit" id="c6-u2">
+<h2>2) الجزء الأول: إنشاء أصناف المركبات (Vehicle Hierarchy)</h2>
+
+<h3 class="sub">Vehicle — الصنف الأب</h3>
+<pre class="code">
+<span class="kw">public class</span> Vehicle {
+    <span class="kw">protected</span> String plateNumber;
+    <span class="kw">protected</span> String brand;
+    <span class="kw">protected int</span> speed;
+
+    <span class="kw">public</span> Vehicle(String plateNumber, String brand, <span class="kw">int</span> speed) {
+        <span class="kw">this</span>.plateNumber = plateNumber;
+        <span class="kw">this</span>.brand = brand;
+        <span class="kw">this</span>.speed = speed;
+    }
+
+    <span class="kw">public</span> String getPlateNumber() {
+        <span class="kw">return</span> plateNumber;
+    }
+
+    <span class="kw">@Override</span>
+    <span class="kw">public</span> String toString() {
+        <span class="kw">return</span> <span class="str">"["</span> + plateNumber + <span class="str">"] "</span> + brand + <span class="str">" - سرعة: "</span> + speed;
+    }
+}
+</pre>
+<div class="tip">تعريف <code class="inline">toString()</code> بالصنف الأب يسمح لكل الأصناف الفرعية (Car, Truck...) تطبع نفسها بشكل موحّد ومقروء تلقائيًا عند استخدامها بـSystem.out.println.</div>
+
+<h3 class="sub">Car — يرث من Vehicle</h3>
+<pre class="code">
+<span class="kw">public class</span> Car <span class="kw">extends</span> Vehicle {
+    <span class="kw">private int</span> numberOfDoors;
+
+    <span class="kw">public</span> Car(String plateNumber, String brand, <span class="kw">int</span> speed, <span class="kw">int</span> doors) {
+        <span class="kw">super</span>(plateNumber, brand, speed);
+        <span class="kw">this</span>.numberOfDoors = doors;
+    }
+}
+</pre>
+
+<h3 class="sub">Truck — يرث من Vehicle</h3>
+<pre class="code">
+<span class="kw">public class</span> Truck <span class="kw">extends</span> Vehicle {
+    <span class="kw">private double</span> loadCapacity;
+
+    <span class="kw">public</span> Truck(String plateNumber, String brand, <span class="kw">int</span> speed, <span class="kw">double</span> loadCapacity) {
+        <span class="kw">super</span>(plateNumber, brand, speed);
+        <span class="kw">this</span>.loadCapacity = loadCapacity;
+    }
+}
+</pre>
+
+<h3 class="sub">Motorcycle — يرث من Vehicle</h3>
+<pre class="code">
+<span class="kw">public class</span> Motorcycle <span class="kw">extends</span> Vehicle {
+    <span class="kw">private boolean</span> hasSidecar;
+
+    <span class="kw">public</span> Motorcycle(String plateNumber, String brand, <span class="kw">int</span> speed, <span class="kw">boolean</span> hasSidecar) {
+        <span class="kw">super</span>(plateNumber, brand, speed);
+        <span class="kw">this</span>.hasSidecar = hasSidecar;
+    }
+}
+</pre>
+
+<div class="why-box">
+كل الأصناف الثلاثة تشترك بالخصائص الأساسية (plateNumber, brand, speed) اللي وضعناها بالأب مرة وحدة — وكل واحد يضيف فقط الخاصية اللي تميّزه (عدد الأبواب، سعة الحمولة، وجود عربة جانبية). هذا هو التطبيق العملي لمبدأ Inheritance لتجنب تكرار الكود.
+</div>
+</section>
+
+<!-- UNIT 3 -->
+<section class="unit" id="c6-u3">
+<h2>3) الجزء الثاني: صنف Garage (الإدارة)</h2>
+
+<div class="def-box">صنف Garage مسؤول عن إدارة مجموعة المركبات: إضافة، تحديث، حذف، وعرض — وهو مثال تطبيقي على Encapsulation (يحمي قائمة المركبات الداخلية) وAbstraction (يوفر واجهة بسيطة للتعامل معها).</div>
+
+<pre class="code">
+<span class="kw">import</span> java.util.ArrayList;
+
+<span class="kw">public class</span> Garage {
+    <span class="kw">private</span> ArrayList&lt;Vehicle&gt; vehicles;
+
+    <span class="kw">public</span> Garage() {
+        vehicles = <span class="kw">new</span> ArrayList&lt;&gt;();
+    }
+
+    <span class="kw">public void</span> addVehicle(Vehicle v) {
+        vehicles.add(v);
+        System.out.println(<span class="str">"تمت الإضافة: "</span> + v);
+    }
+
+    <span class="kw">public void</span> removeVehicle(String plateNumber) {
+        vehicles.removeIf(v -&gt; v.getPlateNumber().equals(plateNumber));
+    }
+
+    <span class="kw">public void</span> displayVehicles() {
+        <span class="kw">for</span> (Vehicle v : vehicles) {
+            System.out.println(v);
+        }
+    }
+
+    <span class="kw">public void</span> displayVehicleDetails(String plateNumber) {
+        <span class="kw">for</span> (Vehicle v : vehicles) {
+            <span class="kw">if</span> (v.getPlateNumber().equals(plateNumber)) {
+                System.out.println(v);
+                <span class="kw">return</span>;
+            }
+        }
+        System.out.println(<span class="str">"المركبة غير موجودة"</span>);
+    }
+}
+</pre>
+
+<h3 class="sub">لماذا ArrayList بدل Array عادي؟</h3>
+<div class="why-box">
+Array العادي بحجم ثابت لازم نحدده مسبقًا (مثل new Vehicle[10])، لكن عدد المركبات الحقيقي غير معروف ويتغيّر (إضافة/حذف). ArrayList حجمها ديناميكي — تكبر وتصغر تلقائيًا حسب الحاجة، وتوفر دوال جاهزة مثل add() وremoveIf().
+</div>
+
+<table>
+<tr><th>الدالة</th><th>المسؤولية</th></tr>
+<tr><td>addVehicle()</td><td>إضافة مركبة جديدة للقائمة</td></tr>
+<tr><td>updateVehicle()</td><td>تعديل بيانات مركبة موجودة</td></tr>
+<tr><td>removeVehicle()</td><td>حذف مركبة عن طريق رقم اللوحة</td></tr>
+<tr><td>displayVehicles()</td><td>عرض كل المركبات المسجّلة</td></tr>
+<tr><td>displayVehicleDetails()</td><td>عرض تفاصيل مركبة واحدة محددة</td></tr>
+</table>
+</section>
+
+<!-- UNIT 4 -->
+<section class="unit" id="c6-u4">
+<h2>4) الجزء الثالث: صنف Main والتشغيل</h2>
+
+<pre class="code">
+<span class="kw">public class</span> Main {
+    <span class="kw">public static void</span> main(String[] args) {
+        Garage garage = <span class="kw">new</span> Garage();
+
+        <span class="cm">// Case 1: إضافة مركبات من أنواع مختلفة (Polymorphism)</span>
+        garage.addVehicle(<span class="kw">new</span> Car(<span class="str">"ABC-123"</span>, <span class="str">"Toyota"</span>, <span class="num">180</span>, <span class="num">4</span>));
+        garage.addVehicle(<span class="kw">new</span> Truck(<span class="str">"XYZ-999"</span>, <span class="str">"Volvo"</span>, <span class="num">120</span>, <span class="num">5000.0</span>));
+        garage.addVehicle(<span class="kw">new</span> Motorcycle(<span class="str">"MOTO-1"</span>, <span class="str">"Harley"</span>, <span class="num">200</span>, <span class="kw">false</span>));
+
+        <span class="cm">// Case 2: عرض كل المركبات</span>
+        System.out.println(<span class="str">"\n--- كل المركبات ---"</span>);
+        garage.displayVehicles();
+
+        <span class="cm">// Case 3: البحث عن مركبة محددة</span>
+        System.out.println(<span class="str">"\n--- تفاصيل مركبة ---"</span>);
+        garage.displayVehicleDetails(<span class="str">"XYZ-999"</span>);
+
+        <span class="cm">// Case 4: حذف مركبة</span>
+        garage.removeVehicle(<span class="str">"MOTO-1"</span>);
+        System.out.println(<span class="str">"\n--- بعد الحذف ---"</span>);
+        garage.displayVehicles();
+    }
+}
+</pre>
+
+<div class="output-box">تمت الإضافة: [ABC-123] Toyota - سرعة: 180
+تمت الإضافة: [XYZ-999] Volvo - سرعة: 120
+تمت الإضافة: [MOTO-1] Harley - سرعة: 200
+
+--- كل المركبات ---
+[ABC-123] Toyota - سرعة: 180
+[XYZ-999] Volvo - سرعة: 120
+[MOTO-1] Harley - سرعة: 200
+
+--- تفاصيل مركبة ---
+[XYZ-999] Volvo - سرعة: 120
+
+--- بعد الحذف ---
+[ABC-123] Toyota - سرعة: 180
+[XYZ-999] Volvo - سرعة: 120</div>
+
+<h3 class="sub">ربط كل المفاهيم مع بعض — ملخص نهائي</h3>
+<table>
+<tr><th>المفهوم</th><th>مكان تطبيقه بالمشروع</th></tr>
+<tr><td>Class & Object</td><td>Vehicle, Car, Garage — وكل استدعاء new</td></tr>
+<tr><td>Inheritance</td><td>Car / Truck / Motorcycle تَرث من Vehicle</td></tr>
+<tr><td>Encapsulation</td><td>plateNumber, brand محمية (protected/private) خلف getters</td></tr>
+<tr><td>Polymorphism</td><td>ArrayList&lt;Vehicle&gt; تخزن أنواع مختلفة وتُعامَل بشكل موحّد</td></tr>
+<tr><td>Abstraction</td><td>Garage توفر واجهة بسيطة (addVehicle...) دون كشف تفاصيل ArrayList الداخلية</td></tr>
+<tr><td>Arrays / Collections</td><td>ArrayList لتخزين قائمة المركبات ديناميكيًا</td></tr>
+<tr><td>Loops</td><td>for-each للمرور على كل المركبات بـdisplayVehicles()</td></tr>
+<tr><td>Methods</td><td>كل دالة بـGarage مسؤولة عن مهمة واحدة واضحة</td></tr>
+</table>
+
+<div class="tip">
+هذا هو الهدف من JAVA 104: مو تعلّم مفهوم جديد، بل رؤية كيف <b>كل المفاهيم اللي درسناها بالدورات السابقة تشتغل مع بعض</b> بمشروع واحد متكامل وواقعي.
+</div>
+</section>
+
+
+</div>
+
+</div>
+<footer>ملف مذاكرة شامل مبني على محتوى دورات SDA (مقدمة في البرمجة، JAVA 101-104، مقدمة OOP)</footer>
+</body>
+</html>
